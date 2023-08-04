@@ -24,12 +24,12 @@ export default function LoadMDX({ slug }: { slug: string }) {
 
   return (
     <>
+      {slug}
       <div className="mb-12">
         <h1 className="mb-5 font-[600]">{title}</h1>
         <time className="my-0">{date}</time>
       </div>
       {dynamicMDX}
-      {/* {slug} */}
     </>
   )
 }
