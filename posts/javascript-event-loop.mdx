@@ -1,0 +1,243 @@
+---
+title: '几道常见题来看JavaScript执行机制'
+description: 'How to deploy your Next.js apps on'
+date: '2023-01-02'
+---
+
+> 几道常见面试题来看 `JavaScript` 执行机制
+
+### 前面的话
+
+根据 `JavaScript` 的运行环境，锁定它为单线程，任务需要排队执行，如果网站资源比较大，这样会导致浏览器加载会很慢，但实际上并没有，大家肯定立刻想到了同步和异步。
+
+所谓的同步和异步也是在排队，只是排队的地方不同。
+
+### 同步和异步
+
+> 同步任务进入主线程排队，异步任务进入事件队列中排队
+
+同步任务和异步任务进入到不同的队列中，也就是上面讲的在不同地方排队。
+
+同步任务进入主线程，异步任务进入事件队列，主线程任务执行完毕，事件队列中有等待执行的任务进入主线程执行，直到事件队列中任务全部执行完毕。
+
+### 开胃菜
+
+```javascript
+console.log('a')
+
+setTimeout(function () {
+  console.log('b')
+}, 200)
+
+setTimeout(function () {
+  console.log('c')
+}, 0)
+
+console.log('d')
+```
+
+结果：`a d c b`
+
+从上到下，该进入主线程的进入主线程，该进入事件队列的进入事件队列。
+
+那么主线程中存在 `console.log('a')` 和 `console.log('d')`，定时器 `setTimeout` 延迟一段时间执行，顾名思义异步任务进入事件队列中，等待主线程任务执行完毕，再进入主线程执行。
+
+定时器的延迟时间为 `0` 并不是立刻执行，只是代表相比于其他定时器更早的进入主线程中执行。
+
+### 加一盘
+
+```javascript
+for (var i = 0; i < 10; i++) {
+  setTimeout(function () {
+    console.log(i)
+  }, 1000)
+}
+```
+
+结果：`十个10`
+
+每次 `for` 循环遇到 `setTimeout` 将其放入事件队列中等待执行，直到全部循环结束，`i` 作为全局变量当循环结束后 `i = 10` ，再来执行 `setTimeout` 时 `i` 的值已经为 `10` ， 结果为十个 10。
+
+将 `var` 改为 `let` ，变量作用域不同，`let` 作用在当前循环中，所以进入事件队列的定时器每次的 `i` 不同，最后打印结果会是 0 1 2...9。
+
+### 宏任务 微任务
+
+> 除了经常说的同步任务和异步任务之外，更可分为宏任务，微任务
+
+主要宏任务：`整段脚本script` `setTimeout` `setTimeout`...
+主要微任务：`promise.then`...
+
+执行流程：
+
+1. 整段脚本 script 作为宏任务开始执行
+2. 遇到微任务将其推入微任务队列，宏任务推入宏任务队列
+3. 宏任务执行完毕，检查有没有可执行的微任务
+4. 发现有可执行的微任务，将所有微任务执行完毕
+5. 开始新的宏任务，反复如此直到所有任务执行完毕
+
+### 来一盘 Promise
+
+```js
+const p = new Promise((resolve) => {
+  console.log('a')
+  resolve()
+  console.log('b')
+})
+
+p.then(() => {
+  console.log('c')
+})
+
+console.log('d')
+```
+
+结果：`a b d c`
+
+1. 整段 script 进入宏任务队列开始执行，
+2. `promise` 创建立即执行，打印 `a` `b`，
+3. 遇到 `promise.then` 进入微任务队列，
+4. 遇到 `console.log('d')` 打印 `d`，
+5. 整段代码作为宏任务执行完毕，有可执行的微任务，开始执行微任务，打印 `c` 。
+
+```js
+setTimeout(function () {
+  console.log('setTimeout')
+}, 0)
+
+const p = new Promise((resolve) => {
+  console.log('a')
+  resolve()
+  console.log('b')
+})
+
+p.then(() => {
+  console.log('c')
+})
+
+console.log('d')
+```
+
+结果：`a b d c setTimeout`
+
+1. `setTimeout` 进入宏任务队列，
+2. `promise` 创建立即执行，打印 `a` `b`，
+3. 遇到 `promise.then` 进入微任务队列，
+4. 遇到 `console.log('d')` 打印 `d`，
+5. 有可执行的微任务，打印 `c`，
+6. 微任务执行完毕，开始执行新的宏任务，`setTimeout` 开始执行，打印 `setTimeout`
+
+```js
+setTimeout(function () {
+  console.log('setTimeout')
+}, 0)
+
+const p = new Promise((resolve) => {
+  console.log('a')
+  resolve()
+  console.log('b')
+})
+
+p.then(() => {
+  console.log('c')
+  setTimeout(function () {
+    console.log('then中的setTimeout')
+  }, 0)
+})
+
+console.log('d')
+```
+
+结果：`a b d c setTimeout then中的setTimeout`
+
+1. 同上
+2. 执行微任务打印 `c`，遇到 `setTimeout` 将其推入宏任务队列中
+3. 定时器延迟时间相同，开始按照顺序执行宏任务，分别打印 `setTimeout` `then中的setTimeout`
+
+### 再加点定时器
+
+```js
+console.log('a')
+
+new Promise((resolve) => {
+  console.log('b')
+  resolve()
+}).then(() => {
+  console.log('c')
+  setTimeout(() => {
+    console.log('d')
+  }, 0)
+})
+
+setTimeout(() => {
+  console.log('e')
+  new Promise((resolve) => {
+    console.log('f')
+    resolve()
+  }).then(() => {
+    console.log('g')
+  })
+}, 100)
+
+setTimeout(() => {
+  console.log('h')
+  new Promise((resolve) => {
+    resolve()
+  }).then(() => {
+    console.log('i')
+  })
+  console.log('j')
+}, 0)
+```
+
+结果：`a b c h j i d e f g`
+
+1. 打印 `a`
+2. `promise` 立即执行，打印 `b`
+3. `promise.then` 推入微任务队列
+4. `setTimeout` 推入宏任务队列
+5. 整段代码执行完毕，开始执行微任务，打印 `c` ，遇到 `setTimeout` 推入宏任务队列排队等待执行
+6. 没有可执行的微任务开始执行宏任务，定时器按照延迟时间排队执行
+7. 打印 `h j` ，`promise.then` 推入微任务队列
+8. 有可执行的微任务，打印 `i` ，继续执行宏任务，打印 `d`
+9. 执行延迟为 100 的宏任务，打印 `e f`，执行微任务打印 `g`，所有任务执行完毕
+
+### 简单测试
+
+```js
+console.log('start')
+
+a().then(() => {
+  console.log('a_then')
+})
+
+console.log('end')
+
+function a() {
+  console.log('a_function')
+  return b().then((res) => {
+    console.log('res', res)
+    console.log('b_then')
+    return Promise.resolve('a方法的返回值')
+  })
+}
+
+function b() {
+  console.log('b_function')
+  return Promise.resolve('返回值')
+}
+```
+
+结果：`start` `a_function` `b_function` `end` `res 返回值` `b_then` `a_then`
+
+根据上面例子的流程讲解来思考这个，加深理解
+
+### 总结
+
+- `JavaScript` 单线程，任务需要排队执行
+- 同步任务进入主线程排队，异步任务进入事件队列排队等待被推入主线程执行
+- 定时器的延迟时间为 `0` 并不是立刻执行，只是代表相比于其他定时器更早的被执行
+- 以宏任务和微任务进一步理解 Js 执行机制
+- 整段代码作为宏任务开始执行，执行过程中宏任务和微任务进入相应的队列中
+- 整段代码执行结束，看微任务队列中是否有任务等待执行，如果有则执行所有的微任务，直到微任务队列中的任务执行完毕，如果没有则继续执行新的宏任务
+- 执行新的宏任务，凡是在执行宏任务过程中遇到微任务都将其推入微任务队列中执行
+- 反复如此直到所有任务全部执行完毕

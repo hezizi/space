@@ -2,12 +2,12 @@ import path from 'node:path'
 import fs from 'node:fs'
 import matter from 'gray-matter'
 
-function postMeta() {
-  const POST_PATH = path.join('./mdxs', 'posts')
-  const posts = fs
-    .readdirSync(POST_PATH)
-    .map((post) => post.replace('.mdx', ''))
+const POST_PATH = path.join('.', 'posts')
+const posts = fs.readdirSync(POST_PATH).map((post) => post.replace('.mdx', ''))
 
+console.log('POST_PATH', POST_PATH)
+
+function postMeta() {
   return posts.map((post) => {
     const {
       data: { title, description, date }

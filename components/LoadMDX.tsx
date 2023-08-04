@@ -10,8 +10,12 @@ export default function LoadMDX({ slug }: { slug: string }) {
   const { title, date } = posts.find((post) => post.id === slug) as ContextProps
 
   const loadDynamicMDX = async () => {
-    const mdx = await import(`@/mdxs/posts/${slug}.mdx`)
-    setDynamicMDX(mdx.default)
+    try {
+      const mdx = await import(`../posts/${slug}.mdx`)
+      setDynamicMDX(mdx.default)
+    } catch (error) {
+      setDynamicMDX(<p>something went wrong</p>)
+    }
   }
 
   useEffect(() => {
@@ -25,6 +29,7 @@ export default function LoadMDX({ slug }: { slug: string }) {
         <time className="my-0">{date}</time>
       </div>
       {dynamicMDX}
+      {/* {slug} */}
     </>
   )
 }
