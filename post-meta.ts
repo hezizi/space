@@ -2,7 +2,7 @@ import path from 'node:path'
 import fs from 'node:fs'
 import matter from 'gray-matter'
 
-const POST_PATH = path.join('.', 'posts')
+const POST_PATH = path.join('public', 'posts')
 const posts = fs.readdirSync(POST_PATH).map((post) => post.replace('.mdx', ''))
 
 console.log('POST_PATH', POST_PATH)
