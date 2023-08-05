@@ -1,31 +1,33 @@
 'use client'
 
 import Link from 'next/link'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { type ContextProps, PostContext } from '@/components/PostProvider'
 
 export default function Posts() {
-  // const posts = useContext(PostContext)
-
-  const posts = [
+  const [posts, setPosts] = useState<ContextProps[]>([
     {
-      id: 'http',
-      title: '哈哈哈',
-      date: '2022-10-01'
-    },
-    {
-      id: 'http2',
-      title: '哈哈哈2',
-      date: '2022-10-01'
-    },
-    {
-      id: 'http3',
-      title: '哈哈哈3',
-      date: '2022-10-01'
+      id: '',
+      title: '',
+      description: '',
+      date: ''
     }
-  ]
+  ])
 
-  const dateList = ['2023', '2022', '2018']
+  useEffect(() => {
+    fetch('/api')
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('res', res)
+        setPosts(res)
+      })
+  }, [])
+
+  const dateList = [
+    ...new Set(posts.map((post) => post.date.split('-').shift() as string))
+  ].sort((a, b) => Number(b) - Number(a))
+
+  // const posts = useContext(PostContext)
 
   // const dateList = [
   //   ...new Set(posts.map((post) => post.date.split('-').shift() as string))
@@ -42,7 +44,7 @@ export default function Posts() {
         <div key={date} className="mb-16">
           <h1 className="text-3xl mb-8">{date}</h1>
           <ul>
-            {posts.map(({ id, title, date: postDate }) => {
+            {posts.map(({ id, title, description, date: postDate }) => {
               if (postDate.includes(date)) {
                 return (
                   <li
@@ -55,9 +57,9 @@ export default function Posts() {
                     >
                       {title}
                     </Link>
-                    {/* <blockquote className="mt-2 text-neutral-500 dark:text-neutral-400">
+                    <blockquote className="mt-2 text-neutral-500 dark:text-neutral-400">
                       {description}
-                    </blockquote> */}
+                    </blockquote>
                   </li>
                 )
               }
