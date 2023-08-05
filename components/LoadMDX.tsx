@@ -7,7 +7,9 @@ export default function LoadMDX({ slug }: { slug: string }) {
   const posts = useContext(PostContext)
   const [dynamicMDX, setDynamicMDX] = useState(<p>loading...</p>)
 
-  const { title, date } = posts.find((post) => post.id === slug) as ContextProps
+  console.log('***********', useContext(PostContext))
+
+  const meta = posts.find((post) => post.id === slug) as ContextProps
 
   const loadDynamicMDX = async () => {
     try {
@@ -26,8 +28,8 @@ export default function LoadMDX({ slug }: { slug: string }) {
     <>
       {slug}
       <div className="mb-12">
-        <h1 className="mb-5 font-[600]">{title}</h1>
-        <time className="my-0">{date}</time>
+        <h1 className="mb-5 font-[600]">{meta?.title}</h1>
+        <time className="my-0">{meta?.date}</time>
       </div>
       {dynamicMDX}
     </>

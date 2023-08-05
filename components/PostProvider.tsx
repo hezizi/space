@@ -27,7 +27,9 @@ export const PostContext = createContext(initContext)
 
 export default function PostProvider({
   children
-}: ProviderProps<ContextProps[]>) {
+}: {
+  children: React.ReactNode
+}) {
   const [posts, setPosts] = useState<ContextProps[]>([])
 
   useEffect(() => {
