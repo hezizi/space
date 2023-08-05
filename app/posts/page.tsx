@@ -5,33 +5,35 @@ import { useContext, useEffect, useState } from 'react'
 import { type ContextProps, PostContext } from '@/components/PostProvider'
 
 export default function Posts() {
-  const [posts, setPosts] = useState<ContextProps[]>([
-    {
-      id: '',
-      title: '',
-      description: '',
-      date: ''
-    }
-  ])
+  // const [posts, setPosts] = useState<ContextProps[]>([
+  //   {
+  //     id: '',
+  //     title: '',
+  //     description: '',
+  //     date: ''
+  //   }
+  // ])
 
-  useEffect(() => {
-    fetch('/api')
-      .then((res) => res.json())
-      .then((res) => {
-        console.log('res', res)
-        setPosts(res)
-      })
-  }, [])
-
-  const dateList = [
-    ...new Set(posts.map((post) => post.date.split('-').shift() as string))
-  ].sort((a, b) => Number(b) - Number(a))
-
-  // const posts = useContext(PostContext)
+  // useEffect(() => {
+  //   fetch('/api')
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log('res', res)
+  //       setPosts(res)
+  //     })
+  // }, [])
 
   // const dateList = [
   //   ...new Set(posts.map((post) => post.date.split('-').shift() as string))
   // ].sort((a, b) => Number(b) - Number(a))
+
+  const posts = useContext(PostContext)
+
+  console.log('**************************', posts)
+
+  const dateList = [
+    ...new Set(posts.map((post) => post.date.split('-').shift() as string))
+  ].sort((a, b) => Number(b) - Number(a))
 
   // const postMap: Record<string, ContextProps[]> = {}
   // for (const date of dateList) {

@@ -5,7 +5,7 @@ import Header from '@/components/Header'
 import BackToTop from '@/components/BackToTop'
 import PostProvider from '@/components/PostProvider'
 // import Particles from '@/components/Particles'
-import postMeta from '../post-meta'
+// import postMeta from './post-meta'
 
 export const metadata: Metadata = {
   creator: '赫子子',
@@ -32,12 +32,12 @@ export default function RootLayout({
         {/* 方案一：在<html>中添加`suppressHydrationWarning`用于消除警告 */}
         {/* 方案二：https://nextjs.org/docs/messages/react-hydration-error#solution-2-disabling-ssr-on-specific-components */}
         <NoSSRThemeProvider attribute="class">
-          {/* <PostProvider value={meta}> */}
-          <section className="min-h-screen mx-auto max-w-5xl py-12 px-8">
-            <Header />
-            <main>{children}</main>
-          </section>
-          {/* </PostProvider> */}
+          <PostProvider value={[]}>
+            <section className="min-h-screen mx-auto max-w-5xl py-12 px-8">
+              <Header />
+              <main>{children}</main>
+            </section>
+          </PostProvider>
         </NoSSRThemeProvider>
 
         <BackToTop />

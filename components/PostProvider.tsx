@@ -1,6 +1,11 @@
 'use client'
 
-import React, { type ProviderProps, createContext } from 'react'
+import React, {
+  type ProviderProps,
+  createContext,
+  useEffect,
+  useState
+} from 'react'
 
 export type ContextProps = {
   id: string
@@ -21,8 +26,18 @@ const initContext: ContextProps[] = [
 export const PostContext = createContext(initContext)
 
 export default function PostProvider({
-  value,
   children
 }: ProviderProps<ContextProps[]>) {
-  return <PostContext.Provider value={value}>{children}</PostContext.Provider>
+  const [posts, setPosts] = useState<ContextProps[]>([])
+
+  useEffect(() => {
+    fetch('/api')
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('res', res)
+        setPosts(res)
+      })
+  }, [])
+
+  return <PostContext.Provider value={posts}>{children}</PostContext.Provider>
 }
