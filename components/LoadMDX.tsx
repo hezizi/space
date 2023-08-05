@@ -11,7 +11,7 @@ export default function LoadMDX({ slug }: { slug: string }) {
 
   const loadDynamicMDX = async () => {
     try {
-      const mdx = await import(`../posts/${slug}.mdx`)
+      const mdx = await import(`@/mdxs/posts/${slug}.mdx`)
       setDynamicMDX(mdx.default)
     } catch (error) {
       setDynamicMDX(<p>something went wrong</p>)

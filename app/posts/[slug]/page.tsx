@@ -17,8 +17,7 @@ export default function Posts({
 }) {
   return (
     <article className="prose dark:prose-invert max-w-none pb-20">
-      {/* <LoadMDX slug={slug} /> */}
-      <p>post detail</p>
+      <LoadMDX slug={slug} />
     </article>
   )
 }
