@@ -1,5 +1,6 @@
 {
   "name": "@yuci/space",
+  "author": "yuci <yucihent@163.com>",
   "version": "1.2.0",
   "private": true,
   "scripts": {

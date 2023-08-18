@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import BackToTop from '@/components/BackToTop'
 // import Particles from '@/components/Particles'
 
@@ -28,9 +29,10 @@ export default function RootLayout({
         {/* 方案一：在<html>中添加`suppressHydrationWarning`用于消除警告 */}
         {/* 方案二：https://nextjs.org/docs/messages/react-hydration-error#solution-2-disabling-ssr-on-specific-components */}
         <NoSSRThemeProvider attribute="class" defaultTheme="light">
-          <section className="min-h-screen mx-auto max-w-5xl py-12 px-8">
+          <section className="flex flex-col min-h-screen mx-auto max-w-5xl pt-12 pb-8 px-8">
             <Header />
-            <main>{children}</main>
+            <main className="flex-1">{children}</main>
+            <Footer />
           </section>
         </NoSSRThemeProvider>
 
