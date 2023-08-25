@@ -1,0 +1,51 @@
+---
+title: 'vite v5.0.0-beta.0, rollup v3.28.1, TypeScript 5.3抢先看, js-framework-benchmark'
+---
+
+### 发布
+
+- `vite v5.0.0-beta.0`，升级node版本到18，[更多内容](https://github.com/vitejs/vite/blob/v5.0.0-beta.0/packages/vite/CHANGELOG.md)
+- `rollup v3.28.1`，修复external文件在目标目录外使用相对导入渲染错误的[bug](https://github.com/rollup/rollup/pull/5099)，以及[其他改动](https://github.com/rollup/rollup/releases/tag/v3.28.1)
+- `react-redux v9.0.0-alpha.0`，重大变化，升级到`react 18`和`redux 5`
+- [`Rspack v0.3.0`](https://github.com/web-infra-dev/rspack/releases/tag/v0.3.0)，`builtin:swc-loader`支持，提供更细粒度swc转换配置
+- `ant-design-vue v4.0.1`，新增部分[新特性](https://github.com/vueComponent/ant-design-vue/releases/tag/4.0.1)，修复些许bug
+
+### 瞧一瞧
+
+> react-redux v9.0.0-alpha.0更新
+
+在当前版本中除了要求升级react到18，redux到5之外，还有其他改动：
+
+- 使用`tsup`构建，替代`babel`和`rollup`
+- 不再构建`UMD`版本
+- 升级`react-native`到`0.71`
+- [更多](https://github.com/reduxjs/react-redux/releases/tag/v9.0.0-alpha.0)
+
+> 宣布typescript v5.2
+
+就在近两天`TypeScript`宣布了`5.2`版本，带来一些新特性以及重大变更，其中一个重大变更为当生成声明文件时总会emit`namespace`，更多[细节](https://devblogs.microsoft.com/typescript/announcing-typescript-5-2)。
+
+> typescript v5.3抢先看
+
+官方给出了`5.3`[迭代计划](https://github.com/microsoft/TypeScript/issues/55486)，抢先看5.3中可能会带来的特性：
+
+- `Import Attributes`，导入属性，允许指定导入选项
+- `throw Expressions`，支持`throw`表达式
+- `isolatedDeclarations: true`，这个配置项目的是提高在`monorepo`中类型检查速度
+
+更多特性可在迭代计划中查看，该版本预计今年11月14号发布。
+
+> js-framework-benchmark
+
+[js-framework-benchmark](https://github.com/krausest/js-framework-benchmark)是一个比较前端框架性能的工具，评估`vue`，`react`，`svelte`等一些框架在大数据下运行一系列基准测试的性能表现。
+
+以下是选取了部分主流框架的性能对比
+
+![framework-benchmark](/images/framework-benchmark.jpg)
+
+> nuxt devtools 2k star
+
+[Nuxt DevTools](https://devtools.Nuxtjs.org) 是一个可视化工具，在使用`Nuxt`开发应用中提供可视化界面，要求`Nuxt`版本在`3.1.0`及以上。在8月21号Nuxt Devtools的github star数量来到了2k。
+
+![nuxtdevtool](/images/nuxtdevtool.jpg)
+(图取自官方)
