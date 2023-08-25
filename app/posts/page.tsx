@@ -8,13 +8,17 @@ export default async function Posts() {
     ...new Set(posts.map((post) => post.date.split('-').shift() as string))
   ].sort((a, b) => Number(b) - Number(a))
 
+  const sortedPosts = posts.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  )
+
   return (
     <>
       {dateList.map((date) => (
         <div key={date} className="mb-16">
           <h1 className="text-3xl mb-8">{date}</h1>
           <ul>
-            {posts.map(({ slug, title, description, date: postDate }) => {
+            {sortedPosts.map(({ slug, title, description, date: postDate }) => {
               if (postDate.includes(date)) {
                 return (
                   <li
