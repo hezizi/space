@@ -13,7 +13,7 @@ export default function Header() {
           <Link
             key={item[0]}
             href={item[1]}
-            className="py-3 px-6 transition-transform duration-200 hover:scale-125"
+            className="py-3 px-5 transition-transform duration-200 hover:scale-125"
           >
             {item[0]}
           </Link>
