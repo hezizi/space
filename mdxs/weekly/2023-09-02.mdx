@@ -1,0 +1,63 @@
+---
+title: 'lerna v7.2.0, pnpm v8.7.0, astro v3.0, markdown-it-mdc'
+---
+
+### 发布
+
+- `lerna v7.2.0`，在执行`lerna init`检测现有包管理器和自动安装包
+- `pnpm v8.7.0`，使用`install`安装包性能有所提升
+- `vueuse v10.4.1`，设置`rollup`打包配置中`target`默认为`es2018`
+- `shiki v0.14.4`，添加`mdc`语法
+- `unocss v0.55.4`，新`@unocss/extractor-mdc`提取器
+- `axios v1.5.0`，新增导出`getAdapter`方法用于适配器增强
+
+### 瞧一瞧
+
+> astro [3.0](https://astro.build/blog/astro-3/)
+
+于8月30日，`Astro 3.0`发布，有如下亮点：
+
+- 新增`View Transitions`API，实现页面导航过度效果
+- 更快的渲染速度，官方称相比2.9版本渲染速度提升30%-75%
+- `Image`优化，渲染的`Image`标签将添加推断的宽度和高度
+- `SSR`增强，与Vercel合作，提升服务端渲染性能
+- `HMR`增强，重构`JSX`，热更新速度更快
+- 构建输出优化
+  - 压缩输出的HTML体积
+  - 替换`astro-x`类名为`data-astro-cid-hash`属性
+  - 小块CSS内联到HTML中
+
+> markdown-it-mdc
+
+基于`markdown-it`的一款插件，对markdown语法增强，支持渲染vue组件，目前已支持[多种语法](https://content.nuxtjs.org/guide/writing/mdc)：
+
+- `Block Component`
+- `Inline components`
+- `Props`
+- `Span Text`
+
+> nuxt [v3.7.0](https://github.com/nuxt/nuxt/releases/tag/v3.7.0)
+
+- 将`nuxi`与`Nuxt`解耦，单独一个[仓库](https://github.com/nuxt/cli)，使用[unjs/citty](https://github.com/unjs/citty)重构
+
+- 随着[unjs/h3](https://github.com/unjs/h3)和[unjs/ninto](https://github.com/unjs/nitro)的改进，现在可以直接从服务器路由返回`Response`对象，这意味着也可以在`Nuxt`中本机返回和处理流
+
+- 在渲染来自服务器的`HTML`响应方面进行了一些优化
+
+- 在`Nuxt`配置中可使用`$client`和`$server`快捷方式来定义特定于Vite客户端/服务端或Webpack客户端/服务端构建的特定配置
+
+- `Vite 4.4`
+
+- `tsconfig.json`中移除`baseUrl`，使用新定义的相对路径方法
+
+  ```ts
+  function relativeWithDot(from: string, to: string) {
+    return relative(from, to).replace(/^([^.])/, './$1') || '.'
+  }
+  ```
+
+- 支持异步上下文
+
+- `Watcher`更新，减少重新启动服务器
+
+- `Nitro 2.6`
