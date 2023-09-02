@@ -9,7 +9,10 @@ export function getWeeklyMdxs() {
 // 周刊列表
 export function getWeeklyList() {
   const weeklyMdxs = getWeeklyMdxs()
-  return getListWithMeta(weeklyMdxs, weeklyDirPath)
+  const sortedWeekly = getListWithMeta(weeklyMdxs, weeklyDirPath).sort(
+    (a, b) => new Date(b.slug).getTime() - new Date(a.slug).getTime()
+  )
+  return sortedWeekly
 }
 
 // 根据slug获取title

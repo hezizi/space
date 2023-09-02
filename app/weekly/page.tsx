@@ -3,14 +3,11 @@ import { fetchWeeklyList } from 'lib/fetch'
 
 export default async function Weekly() {
   const weekly = await fetchWeeklyList().catch(() => [])
-  const sortedWeekly = weekly.sort(
-    (a, b) => new Date(b.slug).getTime() - new Date(a.slug).getTime()
-  )
-  const weeklyLen = sortedWeekly.length
+  const weeklyLen = weekly.length
 
   return (
     <ul>
-      {sortedWeekly.map(({ slug, title }, index: number) => (
+      {weekly.map(({ slug, title }, index: number) => (
         <li
           key={slug}
           className="prose prose-custom dark:prose-invert max-w-none mb-1"

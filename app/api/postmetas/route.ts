@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
-import { getPostMetaList } from 'lib/post'
+import { getPostList } from 'lib/post'
 
 export async function GET() {
-  const res = getPostMetaList()
+  const res = getPostList()
   return NextResponse.json(res)
 }
