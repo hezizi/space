@@ -1,0 +1,224 @@
+---
+title: 'Bun 1.0'
+description: 'Bun是一个JavaScript运行时，转译器，构建器，包管理器，测试一体化的工具包'
+date: '2023-09-09'
+---
+
+> 距离 Bun 发布的首个版本有1年多时间，发布之初就引起前端界高度关注，一度成为2022年最受欢迎项目，就在昨天（9月8号）Bun 迎来 1.0 版本
+
+### 前端技术圈
+
+随着`Nodejs`的问世，前端进入到新纪元，发展迅猛，各类`JavaScript`框架，`编译` `打包` `测试` `lint`等工具层出不穷，共同构建了前端圈的丰富多彩，`学不动了`因此而来🙃。
+
+### Bun是什么
+
+回到主题，`Bun`是什么？一个`JavaScript`运行时，`Transpilers`，`Bundlers`，`Package managers`，`Testing libraries`一体化的工具包，功能丰富，速度很快。
+
+### 安装和更新
+
+```shell
+# curl
+curl -fsSL https://bun.sh/install | bash
+
+# npm
+npm install -g bun
+
+# brew
+brew tap oven-sh/bun
+brew install bun
+
+# docker
+docker pull oven/bun
+docker run --rm --init --ulimit memlock=-1:-1 oven/bun
+```
+
+```shell
+bun upgrade
+```
+
+### Bun存在的目的
+
+> 消除缓慢和复杂
+
+1. `Nodejs`直接替代品，可替代对象：
+
+- `npx` `bunx`速度更快
+- `nodemon` 内置监听模式
+- `dotenv`，`cross-env` 默认读取`.env`文件
+
+2. `Bun`可直接运行`.js`，`.ts`，`.mjs`，`.cjs`，`jsx`以及`.tsx`，可替代对象：
+
+- `babel`
+- `tsc` 仍可使用tsc做类型检查
+- `tsx`
+- `ts-node`,`ts-node-esm`
+
+3. `Bun`可构建打包并且性能更高，可替代对象：`webpack`，`rollup`，`esbuild`，`parcel`。
+
+4. 与`npm`兼容，会读取`package.json`将依赖写入`node_modules`，可替代对象：`npm`，`pnpm`，`yarn`，`lerna`。
+
+5. 可用于测试，兼容`jest`，支持快照测试、模拟和代码覆盖率，可替代对象：
+
+- `jest`,`ts-jest`,`@swc/jest`,`babel-jest`,`jest-extended`
+- `vitest`
+
+Bun作为一个集成工具包避免使用大量工具带来的复杂和低效问题
+
+### Bun是一个JavaScript运行时
+
+Bun内置了对Node API的支持，包括：
+
+- 内置模块，如`fs`，`path`和`net`
+- 全局变量如`__dirname`和`process`
+- Node.js模块解析算法（例如`node_modules`）
+
+Bun对npm上最流行的Node.js包的测试套件进行了测试，`Express`，`Koa`和`Hono`等服务器框架就可以正常工作。
+
+### 速度
+
+Bun的启动速度比Node.js快4倍，这种差异在运行TypeScript文件时会很明显，TypeScript需要先被转译才能在Node.js中运行。
+
+![bun-speed](/images/bun-speed.png)
+
+与使用`Google V8`引擎构建的Node.js和其他运行时不同，Bun是使用Apple的`WebKit`引擎构建的，WebKit是为Safari提供支持的引擎，每天有数十亿台设备使用。它快速、高效，并且经过了数十年的实战考验。
+
+### 支持TypeScript和JSX
+
+内置了一个JavaScript转译器，可以运行JavaScript，TypeScript甚至JSX/TSX文件，无需任何依赖，执行`bun index.ts`或`bun index.tsx`
+
+### ESM与CommonJS兼容性
+
+从CommonJS向ESM的转变一直很慢，并伴随着许多问题，ESM被引入后,Node.js花了5年时间才在无需实验性标记的情况下支持它，尽管如此,生态系统中仍有大量CommonJS代码。
+
+Bun同时支持两种模块系统，不需要担心文件扩展名，`.js` vs `.cjs` vs `.mjs`，或者在package.json中包含`"type": "module"`。
+
+你甚至可以在同一个文件中同时使用`import`和`require()`
+
+```js
+import lodash from 'lodash'
+const _ = require('underscore')
+```
+
+### Web APIs
+
+Bun内置支持了浏览器中可用的Web标准 API，比如 `fetch`、`Request`、`Response`、`WebSocket` 和 `ReadableStream`。
+
+```js
+const response = await fetch('https://example.com/')
+const text = await response.text()
+```
+
+不再需要安装像`node-fetch`和`ws`这样的包了，Bun的内置Web API是用原生代码实现的，比第三方替代方案速度更快、更可靠。
+
+### 热重载
+
+可以使用`--hot`运行Bun来启用热重载，它会在文件更改时重新加载应用程序。
+
+```sh
+bun --hot server.ts
+```
+
+与`nodemon`不同，Bun在不终止旧进程的情况下重新加载你的代码，这意味着HTTP和WebSocket连接不会断开，状态也不会丢失。
+
+### 插件
+
+Bun高度可定制，可以定义插件拦截导入并执行自定义加载逻辑，可添加对额外文件类型的支持，像`.yaml`或`.png`，受`esbuild`启发，意味着大多数esbuild插件可以直接在Bun中使用。
+
+```js
+import { plugin } from "bun"
+
+plugin({
+  name: "YAML",
+  async setup(build) {
+    const { load } = await import("js-yaml")
+    const { readFileSync } = await import("fs")
+    build.onLoad({ filter: /.(yaml|yml)$/ }, (args) => {
+      const text = readFileSync(args.path, "utf8")
+      const exports = load(text) as Record<string, any>
+      return { exports, loader: "object" }
+    })
+  }
+})
+```
+
+### 安装速度
+
+Bun的速度比`npm`、`yarn`、`pnpm`快很多，它使用全局模块缓存来避免从npm注册表冗余下载，并在每个操作系统上使用可用的最快系统调用。
+
+![bun-install](/images/bun-install.png)
+
+### 测试
+
+Bun有一个内置的测试模块`Bun:test`，完全兼容`Jest`，执行`bun test`进行测试。
+
+```js
+import { test, expect } from 'bun:test'
+
+test('2 + 2', () => {
+  expect(2 + 2).toBe(4)
+})
+```
+
+从`Jest`或`Vitest`迁移很容易，任何来自`@jest/globals`或`vitest`的导入都将在内部重新映射到`Bun:test`。
+
+```js
+import { test } from '@jest/globals'
+
+describe('test suite', () => {
+  // ...
+})
+```
+
+在针对zod测试套件的基准测试中，Bun速度快很多。
+
+![bun-test](/images/bun-test.png)
+
+### 构建打包
+
+```shell
+bun build ./index.tsx --outdir ./build
+```
+
+兼容`esbuild`插件API
+
+```js
+import mdx from '@mdx-js/esbuild'
+
+Bun.build({
+  entrypoints: ['index.tsx'],
+  outdir: 'build',
+  plugins: [mdx()]
+})
+```
+
+使用`esbuild`的基准测试，Bun打包速度比其他工具快非常多
+
+![bun-build](/images/bun-build.png)
+
+由于Bun的运行时和捆绑器是集成的，这意味着Bun可以做其他捆绑器无法做到的事情，引入了`JavaScript macros`，这是一种在`bundle-time`运行JavaScript函数的机制，这些函数返回的值直接内联到包中。
+
+```ts
+// index.ts
+import { getRelease } from './release.ts' with { type: 'macro' }
+
+// The value of `release` is evaluated at bundle-time,
+// and inlined into the bundle, not run-time.
+const release = await getRelease()
+```
+
+```ts
+// release.ts
+export async function getRelease(): Promise<string> {
+  const response = await fetch(
+    'https://api.github.com/repos/oven-sh/bun/releases/latest'
+  )
+  const { tag_name } = await response.json()
+  return tag_name
+}
+```
+
+### 尾语
+
+在目前百花齐放的前端圈，不知`Bun`能否“阻止”更多打包，编译，测试等工具的出现，谁知道呢？🤪，期待`Bun`在未来能撼动`Nodejs`的地位，像`Nodejs`一样开辟新纪元。
+
+更多内容看[Bun 1.0](https://bun.sh/blog/bun-v1.0)
