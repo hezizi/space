@@ -32,6 +32,7 @@
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-syntax-highlighter": "^15.5.7",
+    "@yuci/utils": "^0.1.0",
     "autoprefixer": "^10.4.14",
     "commitizen": "^4.3.0",
     "cz-git": "^1.7.0",

@@ -1,18 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { debounce } from '@yuci/utils'
 import Icon from '@/components/Icon'
-
-// debounce
-function debounce<T extends any[]>(fn: (...args: T) => void, delay = 50) {
-  let timer: ReturnType<typeof setTimeout>
-  return (...args: T) => {
-    clearTimeout(timer)
-    timer = setTimeout(() => {
-      fn.apply(this, args)
-    }, delay)
-  }
-}
 
 export default function BackTop() {
   const onClick = () => {
@@ -29,9 +19,9 @@ export default function BackTop() {
   }
 
   useEffect(() => {
-    window.addEventListener('scroll', debounce(scroll))
+    window.addEventListener('scroll', debounce(scroll, 50))
     return () => {
-      window.removeEventListener('scroll', debounce(scroll))
+      window.removeEventListener('scroll', debounce(scroll, 50))
     }
   }, [])
 
