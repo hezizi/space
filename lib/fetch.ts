@@ -24,8 +24,7 @@ export async function fetchPostList<T extends boolean = true>(
 
 /**
  * 请求weekly周刊列表
- * @param withMeta default true boolean
- * @returns 周刊列表
+ * @returns 周刊列表 ListType[]
  */
 export async function fetchWeeklyList(): Promise<ListType[]> {
   const res = await fetch(`${base}/weekly`)
