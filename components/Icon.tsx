@@ -2,8 +2,8 @@ import Image from 'next/image'
 
 export default function Icon({
   name,
-  width = 30,
-  height = 30,
+  width = 28,
+  height = 28,
   ...props
 }: {
   name: string
@@ -11,7 +11,7 @@ export default function Icon({
 }) {
   return (
     <Image
-      src={`/${name}.svg`}
+      src={name.includes('http') ? name : `/${name}.svg`}
       width={width}
       height={height}
       {...props}

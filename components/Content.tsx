@@ -121,7 +121,7 @@ function AboutContent(props: Record<string, any>) {
       <p className="mb-6">{introduction}</p>
       <div className="flex items-center mb-6">
         <span className="mr-3">常用技术栈✨:</span>
-        <div className="grid gap-5 grid-cols-9">
+        <div className="grid gap-5 grid-cols-12 items-center">
           {skills.map((skill: string) => (
             <Icon key={skill} name={skill} />
           ))}
@@ -148,7 +148,7 @@ function MDXContent(cmd: 'posts' | 'weekly') {
   return (
     <ul>
       {cmdContentMap[cmd].map((post) => (
-        <li key={post.slug} className="mb-3 list-disc list-inside">
+        <li key={post.slug} className="mb-2 list-disc list-inside">
           <Link
             href={`/${cmd}/${post.slug}`}
             className="text-sky-500"
