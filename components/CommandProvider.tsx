@@ -1,16 +1,18 @@
 'use client'
 
 import React, { createContext, useState, useEffect } from 'react'
-import { fetchPostList } from 'lib/fetch'
+import { fetchPostList, fetchWeeklyList } from 'lib/fetch'
 import { type ListType } from 'lib/file'
 
 type ProviderValueType = {
   posts: ListType[]
+  weekly: ListType[]
   [key: string]: any
 }
 
 export const CommandContext = createContext<ProviderValueType>({
-  posts: []
+  posts: [],
+  weekly: []
 })
 
 export default function PostProvider({
@@ -21,12 +23,14 @@ export default function PostProvider({
   children: React.ReactNode
 }) {
   const [providerValue, setProviderValue] = useState<ProviderValueType>({
-    posts: []
+    posts: [],
+    weekly: []
   })
 
   const fetch = async () => {
     const posts = await fetchPostList()
-    setProviderValue({ posts })
+    const weekly = await fetchWeeklyList()
+    setProviderValue({ posts, weekly })
   }
 
   useEffect(() => {

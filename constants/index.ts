@@ -21,10 +21,11 @@ export const HELP = 'help',
   LS = 'ls',
   ABOUT = 'about',
   POSTS = 'posts',
+  WEEKLY = 'weekly',
   // PROJECTS = 'projects',
   INIT_CMD = HELP,
   COMMAND_NOT_FOUND = 'command not found',
-  COMMANDS = [ABOUT, POSTS, HELP, LIST, LS, CLEAR] as const
+  COMMANDS = [ABOUT, POSTS, WEEKLY, HELP, LIST, LS, CLEAR] as const
 
 export type CommandsType = (typeof COMMANDS)[number]
 
@@ -37,7 +38,8 @@ export const COMMAND_CONTENT_MAP: Record<
     [`${LIST}/${LS}`]: ['list all commands', COMMANDS],
     [CLEAR]: 'clear all outputs',
     [ABOUT]: 'some information about me',
-    [POSTS]: 'list all posts'
+    [POSTS]: 'list all posts',
+    [WEEKLY]: 'list all weekly'
     // [PROJECTS]: 'list all projects'
   },
 
@@ -53,7 +55,8 @@ export const COMMAND_CONTENT_MAP: Record<
     }
   },
 
-  [POSTS]: 'post'
+  [POSTS]: 'post',
+  [WEEKLY]: 'weekly'
 
   // [PROJECTS]: 'project'
 }

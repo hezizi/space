@@ -9,6 +9,7 @@ import {
   LIST,
   LS,
   POSTS,
+  WEEKLY,
   // PROJECTS,
   type CommandsType
 } from '@/constants'
@@ -25,8 +26,8 @@ export default function CommandContent(props: Record<string, any>) {
     return HelpContent(args)
   } else if (cmd === LIST || cmd === LS) {
     return ListContent(args)
-  } else if (cmd === POSTS) {
-    return PostsContent()
+  } else if (cmd === POSTS || cmd === WEEKLY) {
+    return MDXContent(cmd)
   }
   // else if (cmd === PROJECTS) {
   //   return ProjectsContent(args)
@@ -140,15 +141,16 @@ function AboutContent(props: Record<string, any>) {
   )
 }
 
-// posts cmd content
-function PostsContent() {
-  const { posts } = useContext(CommandContext)
+// posts weekly cmd content
+function MDXContent(cmd: 'posts' | 'weekly') {
+  const { posts, weekly } = useContext(CommandContext)
+  const cmdContentMap = { posts, weekly }
   return (
     <ul>
-      {posts.map((post) => (
+      {cmdContentMap[cmd].map((post) => (
         <li key={post.slug} className="mb-3 list-disc list-inside">
           <Link
-            href={`/posts/${post.slug}`}
+            href={`/${cmd}/${post.slug}`}
             className="text-sky-500"
             target="_blank"
           >
