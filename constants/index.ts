@@ -24,6 +24,7 @@ export const HELP = 'help',
   WEEKLY = 'weekly',
   // PROJECTS = 'projects',
   INIT_CMD = ABOUT,
+  RMRF = 'rm -rf',
   COMMAND_NOT_FOUND = 'command not found',
   COMMANDS = [ABOUT, POSTS, WEEKLY, HELP, LIST, LS, CLEAR] as const
 

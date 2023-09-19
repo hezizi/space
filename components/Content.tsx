@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Icon from '@/components/Icon'
 import {
   ABOUT,
+  RMRF,
   COMMAND_CONTENT_MAP,
   COMMAND_NOT_FOUND,
   HELP,
@@ -34,6 +35,8 @@ export default function CommandContent(props: Record<string, any>) {
   // }
   else if (cmd === ABOUT) {
     return AboutContent(args)
+  } else if (cmd.includes(RMRF)) {
+    return <p className="text-red-500">你的想法很危险😏</p>
   }
   return (
     <p className="text-red-500">
