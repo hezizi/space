@@ -7,7 +7,8 @@ export default function Home() {
   return (
     <>
       <p>
-        Hi there👋 我是赫子子, 欢迎来到我的空间👀, 在下方👇输入命令进行交互🥳🔥
+        Hi there👋 欢迎来到我的空间👀, 在下方👇输入命令交互🔥,
+        更多有意思命令即将开放🥳
       </p>
       <CommandProvider versions={versions}>
         <CommandLine />

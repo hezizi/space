@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import CommandInput from './Input'
 import CommandOutput from './Output'
-import { CLEAR } from '@/constants'
+import { CLEAR, HELP } from '@/constants'
 
 export default function CommandLine(props: Record<string, any>) {
   // 当前点击的cmd
@@ -51,6 +51,21 @@ export default function CommandLine(props: Record<string, any>) {
         currentClickCmd={currentClickCmd}
         onTypingCmd={onTypingCmd}
       />
+
+      {typedCmds.length === 2 ? (
+        <div className="mt-3 text-slate-400">
+          输入
+          <button
+            className="mx-2 text-sky-500"
+            onClick={() => onOutputCmdClick(HELP)}
+          >
+            help
+          </button>
+          查看更多命令
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   )
 }

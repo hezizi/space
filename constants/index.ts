@@ -23,7 +23,7 @@ export const HELP = 'help',
   POSTS = 'posts',
   WEEKLY = 'weekly',
   // PROJECTS = 'projects',
-  INIT_CMD = HELP,
+  INIT_CMD = ABOUT,
   COMMAND_NOT_FOUND = 'command not found',
   COMMANDS = [ABOUT, POSTS, WEEKLY, HELP, LIST, LS, CLEAR] as const
 
@@ -47,7 +47,7 @@ export const COMMAND_CONTENT_MAP: Record<
   [LS]: COMMANDS,
 
   [ABOUT]: {
-    introduction: `我是赫子子, 前端API码农, 对CLI感兴趣, 喜欢音乐🎶数码和浩瀚宇宙🤣, 有个公众号【前端仓库】👈`,
+    introduction: `我是赫子子, 前端API码农, 对CLI感兴趣, 喜欢音乐🎶数码和浩瀚宇宙, 有个公众号【前端仓库】👈`,
     skills: [
       'javascript',
       'typescript',
