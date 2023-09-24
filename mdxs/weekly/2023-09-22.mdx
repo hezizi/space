@@ -1,0 +1,104 @@
+---
+title: 'Nextjs v13.5, Nodejs v20.7.0, Svelte runes, Bard更新, NueJS'
+---
+
+### 发布
+
+- `nextjs v13.5`，提升启动和 HMR 速度，内存占用降低40%
+- `nodejs v20.7.0`，支持多个 --env-file 申明，npm 版本升级到 10.1.0
+- `release-it v16.2.0`，给消息上下文添加 releaseUrl 信息
+- `rollup v3.29.3`，修复函数参数改变后代码被错误地进行树摇的错误
+- `unocss v0.56.0`，monorepo中新增 @unocss/rule-utils 常用工具方法包
+- `plugin-legacy v5.0.0-beta.0`，将最低 node 版本提升到18
+
+### 资讯
+
+> Svelte runes
+
+Svelte宣布计划在`Svelte 5`中引入[runes](https://svelte.dev/blog/runes)。什么是`runes`，官方定义：`A letter or mark used as a mystical or magic symbol`，大致含义是含有特定功能的字母或标记。
+
+使用`$state`rune
+
+```js
+<script>
+	// let count = 0;
+	let count = $state(0);
+
+	function increment() {
+		count += 1;
+	}
+</script>
+
+<button on:click={increment}>
+	clicks: {count}
+</button>
+```
+
+> Nextjs 13.5
+
+Nextjs发布[13.5](https://nextjs.org/blog/next-13-5)版本，有以下特性：
+
+1. 启动速度提高22%
+2. HMR速度提高29%
+3. 内存占用减少40%
+4. [修复超过438个错误](https://nextjs.org/blog/next-13-5#other-improvements)
+5. 优化包的导入，在`optimizePackageImports`中添加对应包名称
+
+```js
+module.exports = {
+  experimental: {
+    optimizePackageImports: ['package-name']
+  }
+}
+```
+
+6. 改进`next/image`，支持`<picture>`标签，新增一个实验性方法`unstable_getImgProps`
+
+```js
+import { unstable_getImgProps as getImgProps } from 'next/image'
+
+export default function Page() {
+  const common = { alt: 'Hero', width: 800, height: 400 }
+  const {
+    props: { srcSet: dark }
+  } = getImgProps({ ...common, src: '/dark.png' })
+  const {
+    props: { srcSet: light, ...rest }
+  } = getImgProps({ ...common, src: '/light.png' })
+
+  return (
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcSet={dark} />
+      <source media="(prefers-color-scheme: light)" srcSet={light} />
+      <img {...rest} />
+    </picture>
+  )
+}
+```
+
+> Bard更新，全新推出：Bard迄今为止最强大的模型
+
+谷歌AI产品`Bard`[更新](https://bard.google.com/updates)，现在更直观明了、更富于想象力、响应速度更快，还可用Google搜索功能核查Bard的回答，但目前只支持英文。
+
+> NueJS
+
+官方定义：[它](https://github.com/nuejs/nuejs)是一个非常小的（压缩后 2.3kb）JavaScript库，用于构建Web界面，没有`hooks`、`effects`、`props`、`portals`、`watchers`、`provides`、`injects`等，了解HTML、CSS和JavaScript的基础知识即可使用。
+
+使用基于HTML的模板语法
+
+```html
+<div @name="media-object" class="{ type }">
+  <img src="{ img }" />
+  <aside>
+    <h3>{ title }</h3>
+    <p :if="desc">{ desc }</p>
+    <slot />
+  </aside>
+</div>
+```
+
+> [Emoji Kitchen](https://emojikitchen.dev/)
+
+支持将两个emoji根据各自特征合并生成一个新emoji，新增🍎,🍗,🧈,🍢,🍡,🥟,🍭,🍮,🍯,🥛等众多emoji。
+
+![emojikitchen](/images/emojikitchen.png)
