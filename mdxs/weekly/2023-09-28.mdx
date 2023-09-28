@@ -1,0 +1,28 @@
+---
+title: 'pnpm v8.8.0, rspack v0.3.5, TinyEngine, ChatGPT新功能'
+---
+
+### 发布
+
+- `pnpm v8.8.0`，run 命令新增 --hide-reporter-prefix 选项
+- `rspack v0.3.5`，builtin:sass-loader 废弃，使用 sass-loader 替代
+- `rspress v0.2.0`，支持文档多版本，页面切换时应用 transition 动画，typedoc plugin 添加 cjs 输出
+- `inquirer/core v5.0.1`，修复从 useEffect 主体更改状态时发生无限循环的问题
+- `axios v1.5.1`，改进适配器加载逻辑以提供清晰的错误消息
+- `ant-design v5.9.3`，修复 Popover 超出屏幕时不会自动调整偏移问题，修复 Table cellPaddingBlock 不生效问题
+
+### 资讯
+
+> TinyEngine低代码引擎
+
+适用于多场景的低代码平台开发，包括资源编排、流程编排、服务端渲染、模型驱动、移动端、大屏端以及页面编排等低代码平台。
+
+![TinyEngine](https://res.hc-cdn.com/lowcode-portal/1.1.39/img/home/multi-scenario-right2.png)
+
+> ChatGPT新的语音和图像功能
+
+OpenAI团队在ChatGPT中推出新的语音和图像功能，提供一种新的、更直观的界面，允许您进行语音对话或向ChatGPT展示您正在谈论的内容，语音功能将在iOS和Android上提供，图像功能在所有平台提供。
+
+> ohmyzsh git插件
+
+`alias gt='git tag'`，git插件中别名`gt`被移除，`alias gbm='git branch --move'`，新增`gbm`别名用来分支重命名。`gbm`别名目前还不可用，需要等待ohmyzsh下个版本发布。
