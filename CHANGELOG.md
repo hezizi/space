@@ -1,5 +1,29 @@
 # 📋 CHANGELOG
 
+## [1.3.1](https://github.com/hezizi/space/compare/1.3.0...1.3.1) (2023-10-14)
+
+
+### ✨ Features
+
+* :sparkles: 新增rm -rf命令内容 ([444ea96](https://github.com/hezizi/space/commit/444ea96972fa621bccfddad356bf35d02b42b412))
+* **post:** :sparkles: 新增js原型链文章 ([594b437](https://github.com/hezizi/space/commit/594b43740d64a66b4e1bf600efd03c69cf957d82))
+* **weekly:** :sparkles: 新增0922周刊 ([a97d166](https://github.com/hezizi/space/commit/a97d1668933a083c5abfaea809b46565a92816b4))
+* **weekly:** :sparkles: 新增0928周刊 ([4757c37](https://github.com/hezizi/space/commit/4757c3702389698920fb34b0d23b9872d516a0ee))
+* **weekly:** :sparkles: 新增1006周刊 ([8401b9e](https://github.com/hezizi/space/commit/8401b9ecbd557981f0190ffcba5ac89831cc0049))
+* **weekly:** :sparkles: 新增1013周刊 ([aae2dfc](https://github.com/hezizi/space/commit/aae2dfc06e27e538b3b1cef34a88ff8be0c464f5))
+
+
+### 🐛 Bug Fixes
+
+* :bug: 给nuxtsvg图标添加width和height属性消除警告 ([2027d93](https://github.com/hezizi/space/commit/2027d930047a6db4556771b08c8240c499131e8b))
+
+
+### 📦 Chores
+
+* :hammer: 修改初始命令HELP为ABOUT ([b1df4fe](https://github.com/hezizi/space/commit/b1df4fe648d83d134310acb4370e1f674dd6aaec))
+* :hammer: 更新依赖项 ([b058480](https://github.com/hezizi/space/commit/b0584800277cc1bdb4d6ff34bdbf0330f643c45f))
+* **weekly:** :hammer: 周刊调整到Front-End Weekly仓库 ([4b4451a](https://github.com/hezizi/space/commit/4b4451a89575913b361626e56c5c30c0753a670e))
+
 ## 1.3.0 (2023-09-18)
 
 
