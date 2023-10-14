@@ -15,6 +15,7 @@ import {
   type CommandsType
 } from '@/constants'
 import { CommandContext } from './CommandProvider'
+import Notice from './Notice'
 
 export default function CommandContent(props: Record<string, any>) {
   const { cmd } = props
@@ -149,19 +150,22 @@ function MDXContent(cmd: 'posts' | 'weekly') {
   const { posts, weekly } = useContext(CommandContext)
   const cmdContentMap = { posts, weekly }
   return (
-    <ul>
-      {cmdContentMap[cmd].map((post) => (
-        <li key={post.slug} className="mb-2 list-disc list-inside">
-          <Link
-            href={`/${cmd}/${post.slug}`}
-            className="text-sky-500"
-            target="_blank"
-          >
-            {post.title}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      {cmd === 'weekly' ? <Notice /> : ''}
+      <ul>
+        {cmdContentMap[cmd].map((post) => (
+          <li key={post.slug} className="mb-2 list-disc list-inside">
+            <Link
+              href={`/${cmd}/${post.slug}`}
+              className="text-sky-500"
+              target="_blank"
+            >
+              {post.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }
 
