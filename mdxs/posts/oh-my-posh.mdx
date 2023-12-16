@@ -4,6 +4,8 @@ description: '适用于任何shell的prompt引擎，可轻松定制主题，也�
 date: '2023-11-30'
 ---
 
+![](/images/posh0.png)
+
 ### Oh My Posh是什么
 
 一个跨平台、无关shell的命令提示符加载器。支持`Windows`、`macOS`、`Linux`，可应用于`zsh`、`bash`、`powershell`、`fish`等各种shell。
@@ -39,13 +41,19 @@ macOS和Linux上推荐使用`Homebrew`安装，Windows上安装如果报错参�
 1. 执行`nvim ~/.zshrc`，将`eval "$(oh-my-posh init zsh)"`添加到配置文件中
 2. 执行`exec zsh`或`source ~/.zshrc`重新加载配置
 
+![](/images/posh1.png)
+
 执行完可以看到命令提示符样式已发生变化。
 
 ### 修改主题
 
 Oh My Posh开箱即用的主题非常多，选择一个喜欢的主题提升一下颜值，让命令行看着不再那么单调。
 
+![](/images/posh2.png)
+
 在安装步骤提到，除了下载可执行文件外，也下载了主题文件，存放在oh-my-posh的`themes`目录下。
+
+![](/images/posh3.png)
 
 想要设置哪个主题，只需通过`--config`指定主题完整路径。
 
@@ -55,9 +63,17 @@ eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/xxx.omp.
 
 `xxx`即[主题](https://ohmyposh.dev/docs/themes)页面中每个主题左上角对应的名称。
 
+![](/images/posh4.png)
+
 编辑`.zshrc`后保存，`source ~/.zshrc`重新加载配置文件。
 
+![](/images/posh5.png)
+
 主题修改前后
+
+![](/images/posh6.png)
+
+![](/images/posh7.png)
 
 到此在终端中可以看到已设置的prompt主题，但icon无法显示，需要安装并选择指定字体才能正确加载icon。
 
@@ -65,15 +81,25 @@ eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/xxx.omp.
 
 很多主题都含有icon，如下图，为了能正确加载这些icon，需要安装[Nerd Fonts](https://www.nerdfonts.com/font-downloads)字体，因为Oh My Posh被设计为使用该字体，使用其他字体icon无法加载。
 
+![](/images/posh8.png)
+
 Nerd Fonts有很多子字体种类，我个人比较喜欢`JetBrainsMono Nerd Font`，大家可根据自己喜好下载，下载完成后安装，接着去到终端将字体设置为下载的字体。
+
+![](/images/posh9.png)
 
 如果是使用vscode的终端，可在vscode设置中设置相应字体即可。
 
+![](/images/posh10.png)
+
 指定字体后小图标可以正确加载。
+
+![](/images/posh11.png)
 
 ### 尾语
 
 使用Oh My Posh目的为了美化命令行提示符，展示更多信息。跨平台，支持任何shell，从安装到修改主题都简单易懂，值得注意的是字体要使用 Nerd Fonts，该字体除了能显示提示符里的icon，文件icon可可以。
+
+![](/images/posh12.png)
 
 除了开箱即用的主题外也可以自己设计主题并发布，感兴趣可以一试。
 
