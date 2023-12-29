@@ -8,12 +8,12 @@ date: '2023-11-30'
 
 ### Oh My Posh是什么
 
-一个跨平台、无关shell的命令提示符加载器。支持`Windows`、`macOS`、`Linux`，可应用于`zsh`、`bash`、`powershell`、`fish`等各种shell。
+一个跨平台、无关shell的命令提示符渲染器。支持`Windows`、`macOS`、`Linux`，可应用于`zsh`、`bash`、`powershell`、`fish`等各种shell。
 
 你或许正在使用`Oh My Zsh`，两者都可以美化、增强命令行，但侧重点不同：
 
-- `Oh My Zsh`是针对zsh的配置框架，提供了丰富的主题，另外插件系统也非常强大，除上百个开箱即用插件外，还有很多第三方插件，让zsh使用起来更便捷高效
-- `Oh My Posh`是专注于命令行提示符美化的工具，让提示符更加醒目，展现更多信息
+- `Oh My Zsh`是针对zsh的配置框架，提供了丰富的主题，另外插件系统也非常强大，有上百个开箱即用插件，还有很多第三方插件，让zsh使用起来更便捷高效
+- `Oh My Posh`是专注于命令提示符美化的工具，让提示符更加醒目，展现更多信息
 
 ### 安装
 
@@ -25,81 +25,90 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
-macOS和Linux上推荐使用`Homebrew`安装，Windows上安装如果报错参考：[0x8a15000f : Data required by the source is missing](https://github.com/microsoft/winget-cli/issues/1348)。
+macOS和Linux上推荐使用`Homebrew`安装，Windows上使用`winget`安装如果报错可参考：[0x8a15000f : Data required by the source is missing](https://github.com/microsoft/winget-cli/issues/1348)，如果是使用的`WSL`，则按照Linux的安装流程使用Homebrew即可。
 
 安装命令会做两件事：
 
-1. 下载安装执行文件，Windows上是oh-my-posh.exe，macOS和Linux上是oh-my-posh二进制文件，并添加到环境变量中
-2. 下载所有最新主题
+1.  下载安装执行文件，Windows上是oh-my-posh.exe，macOS和Linux上是oh-my-posh二进制文件，并添加到环境变量中
+2.  下载所有最新主题
 
 ### 设置主题
 
-我们已经安装了oh-my-posh，执行`oh-my-posh get shell`查看当前使用的shell，如果是Linux、macOS或WSL也可以用`echo $SHELL`查看。
+我们已经安装了oh-my-posh，执行`oh-my-posh get shell`查看当前使用的shell，如果是Linux、macOS或WSL也可使用`echo $SHELL`查看。
+
+后续操作全都基于macOS，Windows上使用`powershell`操作步骤大同小异。
 
 这边以`zsh`为例如何设置prompt主题：
 
-1. 执行`nvim ~/.zshrc`，将`eval "$(oh-my-posh init zsh)"`添加到配置文件中
-2. 执行`exec zsh`或`source ~/.zshrc`重新加载配置
+1.  执行`nvim ~/.zshrc`，将`eval "$(oh-my-posh init zsh)"`添加到配置文件中，保存退出
+2.  执行`exec zsh`或`source ~/.zshrc`重新加载配置
 
 ![](/images/posh1.png)
 
-执行完可以看到命令提示符样式已发生变化。
+执行完毕可以看到命令提示符样式已发生变化。
+
+如果是使用`bash`，将`eval "$(oh-my-posh init bash)`添加到`.bashrc`或`.profile`或`.bash_profile`中，然后执行`source ~/.bashrc`重载配置文件。
 
 ### 修改主题
 
-Oh My Posh开箱即用的主题非常多，选择一个喜欢的主题提升一下颜值，让命令行看着不再那么单调。
+Oh My Posh开箱即用的[主题](https://ohmyposh.dev/docs/themes)非常多，任选一个主题给命令行增添些样式，谁不爱高颜值，命令行亦是。
 
 ![](/images/posh2.png)
 
-在安装步骤提到，除了下载可执行文件外，也下载了主题文件，存放在oh-my-posh的`themes`目录下。
+在安装步骤中提到过，除了下载可执行文件外，也下载了主题文件，存放在oh-my-posh的`themes`目录下。
 
 ![](/images/posh3.png)
 
-想要设置哪个主题，只需通过`--config`指定主题完整路径。
+想要设置哪个主题，只需通过`--config`指定主题完整路径即可。
 
 ```shell
 eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/xxx.omp.json)"
 ```
 
-`xxx`即[主题](https://ohmyposh.dev/docs/themes)页面中每个主题左上角对应的名称。
+`xxx`即主题页面中每个主题左上角对应的名称。
 
 ![](/images/posh4.png)
 
 编辑`.zshrc`后保存，`source ~/.zshrc`重新加载配置文件。
 
 ![](/images/posh5.png)
-
-主题修改前后
-
+修改前后
 ![](/images/posh6.png)
-
 ![](/images/posh7.png)
 
-到此在终端中可以看到已设置的prompt主题，但icon无法显示，需要安装并选择指定字体才能正确加载icon。
+到此即可在终端中可以看到已设置的提示符主题，但提示符中的icon无法显示，需要安装并选择指定字体才能正确加载icon。
 
 ### 正确加载icon
 
-很多主题都含有icon，如下图，为了能正确加载这些icon，需要安装[Nerd Fonts](https://www.nerdfonts.com/font-downloads)字体，因为Oh My Posh被设计为使用该字体，使用其他字体icon无法加载。
+很多主题都含有icon，为了能正确加载这些icon，需要使用[Nerd Fonts](https://www.nerdfonts.com/font-downloads)字体，因为Oh My Posh被设计为使用该字体，使用其他字体icon无法加载。
+
+Nerd Fonts有很多子字体，我个人下载的`JetBrainsMono Nerd Font`，大家可根据自己喜好下载，下载完成后安装，接着去到终端将字体设置为下载的字体，我使用的终端是`Warp`。
 
 ![](/images/posh8.png)
 
-Nerd Fonts有很多子字体种类，我个人比较喜欢`JetBrainsMono Nerd Font`，大家可根据自己喜好下载，下载完成后安装，接着去到终端将字体设置为下载的字体。
+如果是使用vscode的终端，在vscode设置中设置相应字体即可。
+
+安装并指定字体后icon可以正常显示。
 
 ![](/images/posh9.png)
 
-如果是使用vscode的终端，可在vscode设置中设置相应字体即可。
+### 总结
 
-![](/images/posh10.png)
+使用Oh My Posh设置主题就挺简单的几个步骤：
 
-指定字体后小图标可以正确加载。
-
-![](/images/posh11.png)
+1. 根据OS下载安装
+2. 根据使用的shell将配置添加到配置文件中，并重载配置文件
+3. 安装Nerd Fonts任意一子字体，设置终端或编辑器字体为对应字体
 
 ### 尾语
 
-使用Oh My Posh目的为了美化命令行提示符，展示更多信息。跨平台，支持任何shell，从安装到修改主题都简单易懂，值得注意的是字体要使用 Nerd Fonts，该字体除了能显示提示符里的icon，文件icon可可以。
+使用Oh My Posh目的为了美化命令行提示符，展示更多信息。它跨平台，支持任何shell，从安装到修改主题都简单易懂，字体需要注意一下，该字体除了能显示提示符里的icon，文件icon也可以。
 
-![](/images/posh12.png)
+![](/images/posh10.png)
+
+其他OS或并非使用`zsh`的同学可以访问下方链接按照官方文档，操作大同小异。
+
+Windows用户使用`winget`安装可能会遇到安装错误情况，解决方案可参考[0x8a15000f : Data required by the source is missing](https://github.com/microsoft/winget-cli/issues/1348)。
 
 除了开箱即用的主题外也可以自己设计主题并发布，感兴趣可以一试。
 
