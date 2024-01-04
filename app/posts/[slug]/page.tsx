@@ -33,7 +33,7 @@ export default function PostDetail({
   }
 
   return (
-    <article className="prose dark:prose-invert max-w-none pb-16">
+    <article className="prose prose-a:text-sky-500 dark:prose-invert max-w-none pb-16">
       <LoadMDX {...props} />
     </article>
   )
