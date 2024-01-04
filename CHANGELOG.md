@@ -1,5 +1,45 @@
 # 📋 CHANGELOG
 
+## [1.4.0](https://github.com/hezizi/space/compare/1.3.0...1.4.0) (2024-01-04)
+
+
+### ✨ Features
+
+* :sparkles: ready for oh my posh post ([0310a22](https://github.com/hezizi/space/commit/0310a229d3742149722653a28ac19c8d21402566))
+* :sparkles: 修改文章代码块样式 ([923540c](https://github.com/hezizi/space/commit/923540c96847a62b867b9370d8e36666f17f2449))
+* :sparkles: 新增rm -rf命令内容 ([444ea96](https://github.com/hezizi/space/commit/444ea96972fa621bccfddad356bf35d02b42b412))
+* :sparkles: 更新"Oh My Posh: 让命令行不再单调"文章 ([49513ae](https://github.com/hezizi/space/commit/49513aee1ed93fab314176656ee9b4b88caa04f0))
+* :sparkles: 添加ohmyposh文章图片 ([994b8d5](https://github.com/hezizi/space/commit/994b8d5efcfe656652e165eb91223caec060ca71))
+* **post:** :sparkles: 2023 Bye, 2024 Go~! ([0e3767b](https://github.com/hezizi/space/commit/0e3767b36e9f88a019c00ea08d0f4c504c7b6ad4))
+* **post:** :sparkles: 新增js原型链文章 ([594b437](https://github.com/hezizi/space/commit/594b43740d64a66b4e1bf600efd03c69cf957d82))
+* **weekly:** :sparkles: 新增0922周刊 ([a97d166](https://github.com/hezizi/space/commit/a97d1668933a083c5abfaea809b46565a92816b4))
+* **weekly:** :sparkles: 新增0928周刊 ([4757c37](https://github.com/hezizi/space/commit/4757c3702389698920fb34b0d23b9872d516a0ee))
+* **weekly:** :sparkles: 新增1006周刊 ([8401b9e](https://github.com/hezizi/space/commit/8401b9ecbd557981f0190ffcba5ac89831cc0049))
+* **weekly:** :sparkles: 新增1013周刊 ([aae2dfc](https://github.com/hezizi/space/commit/aae2dfc06e27e538b3b1cef34a88ff8be0c464f5))
+* **weekly:** :sparkles: 更新1013周刊 ([d84237d](https://github.com/hezizi/space/commit/d84237d6b25c83c8367262c50b9510badcea1ab8))
+
+
+### 🐛 Bug Fixes
+
+* :bug: 给nuxtsvg图标添加width和height属性消除警告 ([2027d93](https://github.com/hezizi/space/commit/2027d930047a6db4556771b08c8240c499131e8b))
+
+
+### 📦 Chores
+
+* :hammer: 修改初始命令HELP为ABOUT ([b1df4fe](https://github.com/hezizi/space/commit/b1df4fe648d83d134310acb4370e1f674dd6aaec))
+* :hammer: 更新依赖项 ([b058480](https://github.com/hezizi/space/commit/b0584800277cc1bdb4d6ff34bdbf0330f643c45f))
+* **weekly:** :hammer: 周刊调整到Front-End Weekly仓库 ([4b4451a](https://github.com/hezizi/space/commit/4b4451a89575913b361626e56c5c30c0753a670e))
+
+
+### 📝 Documentation
+
+* **about:** :memo: 更新公众号二维码 ([d2f97c4](https://github.com/hezizi/space/commit/d2f97c4c30cb9c6f7c5b6729f54440383cd3f02b))
+
+
+### ♻ Code Refactoring
+
+* :recycle: update Oh My Posh post ([290407f](https://github.com/hezizi/space/commit/290407fd229a94609a7f60db2fbaf52a300e27d4))
+
 ## [1.3.1](https://github.com/hezizi/space/compare/1.3.0...1.3.1) (2023-10-14)
 
 
