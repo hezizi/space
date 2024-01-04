@@ -11,7 +11,28 @@ module.exports = {
       typography: () => ({
         DEFAULT: {
           css: {
-            // color: theme('colors.gray.600')
+            code: {
+              '&::before': {
+                content: "'' !important"
+              },
+              '&::after': {
+                content: "'' !important"
+              },
+              backgroundImage:
+                'linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%)',
+              padding: '3px 6px',
+              margin: '0 3px',
+              borderRadius: '4px',
+              fontWeight: 'normal'
+            }
+          }
+        },
+        invert: {
+          css: {
+            code: {
+              backgroundImage:
+                'linear-gradient(to right, #243949 0%, #517fa4 100%)'
+            }
           }
         },
         custom: {
