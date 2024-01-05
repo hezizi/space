@@ -1,5 +1,12 @@
 # 📋 CHANGELOG
 
+## [1.4.1](https://github.com/hezizi/space/compare/1.4.0...1.4.1) (2024-01-05)
+
+
+### 🐛 Bug Fixes
+
+* :bug: pre标签下code标签样式问题修复 ([69113a6](https://github.com/hezizi/space/commit/69113a6ce761fcd4ff085884309b8450460d2bfb))
+
 ## [1.4.0](https://github.com/hezizi/space/compare/1.3.0...1.4.0) (2024-01-04)
 
 
