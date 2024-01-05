@@ -13,10 +13,10 @@ module.exports = {
           css: {
             code: {
               '&::before': {
-                content: "'' !important"
+                display: 'none'
               },
               '&::after': {
-                content: "'' !important"
+                display: 'none'
               },
               backgroundImage:
                 'linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%)',
