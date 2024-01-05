@@ -10,6 +10,7 @@ import {
   LIST,
   LS,
   POSTS,
+  VIDEOS,
   WEEKLY,
   // PROJECTS,
   type CommandsType
@@ -28,6 +29,8 @@ export default function CommandContent(props: Record<string, any>) {
     return HelpContent(args)
   } else if (cmd === LIST || cmd === LS) {
     return ListContent(args)
+  } else if (cmd === VIDEOS) {
+    return VideoContent()
   } else if (cmd === POSTS || cmd === WEEKLY) {
     return MDXContent(cmd)
   }
@@ -93,7 +96,7 @@ function ListContent(props: Record<string, any>) {
     onOutputCmdClick(value)
   }
 
-  const containerStyle = 'grid grid-cols-4 gap-x-12 gap-y-4 text-green-500'
+  const containerStyle = 'grid grid-cols-5 gap-x-12 gap-y-4 text-green-500'
 
   return (
     <div
@@ -167,6 +170,11 @@ function MDXContent(cmd: 'posts' | 'weekly') {
       </ul>
     </>
   )
+}
+
+// video cmd content
+function VideoContent() {
+  return 'video'
 }
 
 // projects cmd content

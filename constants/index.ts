@@ -2,6 +2,7 @@ export const SPACE_NAME = 'Yucihent',
   LINKS = {
     Home: '/',
     Posts: '/posts',
+    Videos: '/videos',
     Weekly: '/weekly',
     // Projects: '/projects'
     About: '/about'
@@ -21,12 +22,13 @@ export const HELP = 'help',
   LS = 'ls',
   ABOUT = 'about',
   POSTS = 'posts',
+  VIDEOS = 'videos',
   WEEKLY = 'weekly',
   // PROJECTS = 'projects',
   INIT_CMD = ABOUT,
   RMRF = 'rm -rf',
   COMMAND_NOT_FOUND = 'command not found',
-  COMMANDS = [ABOUT, POSTS, WEEKLY, HELP, LIST, LS, CLEAR] as const
+  COMMANDS = [POSTS, VIDEOS, WEEKLY, ABOUT, HELP, LIST, LS, CLEAR] as const
 
 export type CommandsType = (typeof COMMANDS)[number]
 
@@ -40,6 +42,7 @@ export const COMMAND_CONTENT_MAP: Record<
     [CLEAR]: 'clear all outputs',
     [ABOUT]: 'some information about me',
     [POSTS]: 'list all posts',
+    [VIDEOS]: 'list all videos',
     [WEEKLY]: 'list all weekly'
     // [PROJECTS]: 'list all projects'
   },
@@ -68,6 +71,7 @@ export const COMMAND_CONTENT_MAP: Record<
   },
 
   [POSTS]: 'post',
+  [VIDEOS]: 'video',
   [WEEKLY]: 'weekly'
 
   // [PROJECTS]: 'project'
