@@ -16,13 +16,9 @@ export function getPostList() {
   return sortedPosts
 }
 
-// 根据文章名称获取title， date
-export function getTitleAndDateBySlug(slug: string) {
+// 根据文章名称获取元信息
+export function getMetaBySlug(slug: string) {
   const posts = getPostList()
   const meta = posts.find((post) => post.slug === slug)
-  if (!meta) {
-    return {}
-  }
-  const { title, date } = meta
-  return { title, date }
+  return meta
 }

@@ -1,13 +1,13 @@
 import LoadMDX, { type LoadMDXPropsType } from '@/components/LoadMDX'
 import { fetchPostList } from 'lib/fetch'
-import { getTitleAndDateBySlug } from 'lib/post'
+import { getMetaBySlug } from 'lib/post'
 
 export function generateMetadata({
   params: { slug }
 }: {
   params: { slug: string }
 }) {
-  const { title } = getTitleAndDateBySlug(slug)
+  const { title } = getMetaBySlug(slug)!
   return {
     title
   }
@@ -25,10 +25,11 @@ export default function PostDetail({
 }: {
   params: { slug: string }
 }) {
-  const { title = '', date = '' } = getTitleAndDateBySlug(slug)
+  const { title, description, date } = getMetaBySlug(slug)!
   const props: LoadMDXPropsType = {
     slug,
     title,
+    description,
     date
   }
 
