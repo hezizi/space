@@ -7,12 +7,12 @@ import { useState } from 'react'
 
 export default function Header() {
   const [active, setActive] = useState('Home')
-  const onClik = (key: string) => {
+  const onClick = (key: string) => {
     setActive(key)
   }
   return (
-    <header className="flex justify-between items-center mb-20">
-      <Link className="text-xl" href="/">
+    <header className="flex justify-between items-center mb-20 -mx-28">
+      <Link onClick={() => onClick('Home')} className="text-xl" href="/">
         {SPACE_NAME}
       </Link>
       <nav className="flex justify-around rounded-full shadow-2xl shadow-gray-400 px-3">
@@ -22,7 +22,7 @@ export default function Header() {
           }`
           return (
             <Link
-              onClick={() => onClik(item[0])}
+              onClick={() => onClick(item[0])}
               key={item[0]}
               href={item[1]}
               className={className}
