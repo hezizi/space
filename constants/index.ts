@@ -76,3 +76,12 @@ export const COMMAND_CONTENT_MAP: Record<
 
   // [PROJECTS]: 'project'
 }
+
+// VIDEOS
+export const VIDEO_LIST = [
+  {
+    title: '快来使用Oh My Posh美化你的终端命令行',
+    iframeUrl: '//player.bilibili.com/player.html?bvid=BV1PG411z7xY&page=1',
+    linkUrl: 'https://www.bilibili.com/video/BV1PG411z7xY/'
+  }
+]
