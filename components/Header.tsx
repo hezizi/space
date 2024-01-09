@@ -12,7 +12,7 @@ export default function Header() {
   useEffect(() => {
     const keys = Object.keys(LINKS) as LinksType[]
     keys.map((key) => {
-      if (LINKS[key] === pathname) setActive(key)
+      if (pathname.includes(LINKS[key])) setActive(key)
     })
   }, [pathname])
 
