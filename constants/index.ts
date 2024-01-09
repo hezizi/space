@@ -8,6 +8,8 @@ export const SPACE_NAME = 'Yucihent',
     About: '/about'
   }
 
+export type LinksType = keyof typeof LINKS
+
 // PROMPT
 export const SPACE = 'yucihent.space',
   BRANCH = 'main',

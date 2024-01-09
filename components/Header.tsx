@@ -1,18 +1,24 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import ThemeMode from '@/components/ThemeMode'
-import { LINKS, SPACE_NAME } from '@/constants'
-import { useState } from 'react'
+import { LINKS, LinksType, SPACE_NAME } from '@/constants'
 
 export default function Header() {
-  const [active, setActive] = useState('Home')
-  const onClick = (key: string) => {
-    setActive(key)
-  }
+  const pathname = usePathname()
+  const [active, setActive] = useState<LinksType>('Home')
+  useEffect(() => {
+    const keys = Object.keys(LINKS) as LinksType[]
+    keys.map((key) => {
+      if (LINKS[key] === pathname) setActive(key)
+    })
+  }, [pathname])
+
   return (
     <header className="flex justify-between items-center mb-20 -mx-28">
-      <Link onClick={() => onClick('Home')} className="text-xl" href="/">
+      <Link className="text-xl" href="/">
         {SPACE_NAME}
       </Link>
       <nav className="flex justify-around rounded-full shadow-2xl shadow-gray-400 px-3">
@@ -21,12 +27,7 @@ export default function Header() {
             item[0] === active ? 'text-cyan-500' : ''
           }`
           return (
-            <Link
-              onClick={() => onClick(item[0])}
-              key={item[0]}
-              href={item[1]}
-              className={className}
-            >
+            <Link key={item[0]} href={item[1]} className={className}>
               {item[0]}
             </Link>
           )
