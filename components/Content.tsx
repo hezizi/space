@@ -13,6 +13,7 @@ import {
   VIDEOS,
   WEEKLY,
   // PROJECTS,
+  VIDEO_LIST,
   type CommandsType
 } from '@/constants'
 import { CommandContext } from './CommandProvider'
@@ -174,7 +175,15 @@ function MDXContent(cmd: 'posts' | 'weekly') {
 
 // video cmd content
 function VideoContent() {
-  return 'video'
+  return (
+    <ul className="grid grid-cols-3">
+      {VIDEO_LIST.map(({ iframeUrl }) => (
+        <li key={iframeUrl}>
+          <iframe src={iframeUrl} allowFullScreen={true} />
+        </li>
+      ))}
+    </ul>
+  )
 }
 
 // projects cmd content
