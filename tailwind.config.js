@@ -24,6 +24,12 @@ module.exports = {
               margin: '0 3px',
               borderRadius: '4px',
               fontWeight: 'normal'
+            },
+            img: {
+              borderRadius: '8px',
+              maxWidth: '70%',
+              marginTop: '1em',
+              marginBottom: '1em'
             }
           }
         },
