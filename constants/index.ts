@@ -88,7 +88,7 @@ export const VIDEO_LIST = [
   },
   {
     title: '一个有趣的工具：在命令行中查看你过去一年！',
-    iframeUrl: '//player.bilibili.com/player.html?bvid=BV1364y1N7vB&page=1',
-    linkUrl: 'https://www.bilibili.com/video/BV1364y1N7vB/'
+    iframeUrl: '//player.bilibili.com/player.html?bvid=BV1gt4y1d7QV&page=1',
+    linkUrl: 'https://www.bilibili.com/video/BV1gt4y1d7QV/'
   }
 ]

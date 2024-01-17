@@ -10,7 +10,7 @@ export default async function Videos() {
           <Link
             href={linkUrl}
             target="_blank"
-            className="text-sky-500 block mt-3"
+            className="text-sm text-sky-500 block mt-3"
           >
             {title}
           </Link>
