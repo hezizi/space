@@ -1,5 +1,6 @@
 import { useContext, type MouseEvent } from 'react'
 import Link from 'next/link'
+import { capitalizeFirstLetter } from '@yuci/utils'
 import Icon from '@/components/Icon'
 import {
   ABOUT,
@@ -135,12 +136,13 @@ function AboutContent(props: Record<string, any>) {
           ))}
         </div>
       </div>
-      <p className="mb-3">也可以在这些地方找到我:</p>
-      <ul className="list-disc list-inside">
+      <p className="mb-5">也可以在这些地方找到我:</p>
+      <ul className="ml-1">
         {Object.entries(platforms).map((platform: Record<string, any>) => (
-          <li key={platform[0]} className="mb-2">
-            <Link href={platform[1]} target="_blank" className="text-sky-500">
-              {platform[0]}
+          <li key={platform[0]} className="flex mb-2">
+            <Icon name={platform[0]} width={22} height={22} />
+            <Link href={platform[1]} target="_blank" className="underline ml-2">
+              {capitalizeFirstLetter(platform[0])}
             </Link>
           </li>
         ))}
