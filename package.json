@@ -1,7 +1,7 @@
 {
   "name": "@yuci/space",
   "author": "yuci <yucihent@163.com>",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

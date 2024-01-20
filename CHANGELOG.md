@@ -1,5 +1,42 @@
 # 📋 CHANGELOG
 
+## [1.5.0](https://github.com/hezizi/space/compare/1.4.1...1.5.0) (2024-01-20)
+
+
+### ✨ Features
+
+* :sparkles: 更新Videos模块 ([815992e](https://github.com/hezizi/space/commit/815992e406adb4a97dc52f9d3367020e0538a3d8))
+* :sparkles: 设置文章图片宽度 ([e339d92](https://github.com/hezizi/space/commit/e339d9213d8648c7d700270057c650e097cf6888))
+* :sparkles: 使用zustand做状态管理 ([7d417fd](https://github.com/hezizi/space/commit/7d417fd43114e14ddeb5ef3129b6a72473c72d80))
+* :sparkles: 头部链接添加高亮 ([70344ab](https://github.com/hezizi/space/commit/70344abe4fff54200fcb8ec33aa357c17767d18c))
+* :sparkles: 新增videos命令内容 ([8776c4f](https://github.com/hezizi/space/commit/8776c4fdaac0c6604e88cb824edc7fe962da6688))
+* :sparkles: 新增Videos模块 ([1345538](https://github.com/hezizi/space/commit/13455383cc34aef890a7eceb0825455aede0c5bc))
+* **hooks:** :sparkles: 新增useTyping hook ([c71fc4e](https://github.com/hezizi/space/commit/c71fc4ed3d7e418ff124be0b5a9f73b0e5c6ee87))
+* **videos:** :sparkles: 新增一期视频 ([03cf9ee](https://github.com/hezizi/space/commit/03cf9ee905656c45656316549e80f68fec2c18f6))
+
+
+### 🐛 Bug Fixes
+
+* :bug: 视频链接更新 ([6bd76b8](https://github.com/hezizi/space/commit/6bd76b8b24f224d08345686bcf4c852aa4317f3f))
+* :bug: 修复点击站名Home高亮问题 ([6dff4cc](https://github.com/hezizi/space/commit/6dff4cc9adcdb2307c4e9ef966381dcb75a4c29c))
+* :bug: 修复刷新页面导航高亮错误问题 ([537347f](https://github.com/hezizi/space/commit/537347fcbb118493ca3174af862fae560deaf635))
+* :bug: 修复文章详情页,周刊详情页刷新导航高亮错误问题 ([2ccfe27](https://github.com/hezizi/space/commit/2ccfe27a1ba2f8c7e517ff5f2eca3ca6768993d8))
+
+
+### 📦 Chores
+
+* :hammer: 关于页面内容更新 ([60d0825](https://github.com/hezizi/space/commit/60d082558e97d2f9678d8cc222a33d956bf96a7a))
+* :hammer: 将useTyping hook移出components目录 ([2411c6e](https://github.com/hezizi/space/commit/2411c6e5d89635159d27d6b27b282718b7ad18e0))
+* :hammer: update footer ([1091ddb](https://github.com/hezizi/space/commit/1091ddbbe0c6f99cadec44ae0f477adc374dce38))
+* :hammer: update LICENSE and README ([6b697ef](https://github.com/hezizi/space/commit/6b697efa46239e96d170d3d767b4965283f342cb))
+* :hammer: update welcome ([2a68020](https://github.com/hezizi/space/commit/2a68020bb2a62b53333bb9d380dacf7cb3a848e9))
+
+
+### ♻ Code Refactoring
+
+* :recycle: 调整文章列表页样式，将description信息在文章内容中展示 ([29f8757](https://github.com/hezizi/space/commit/29f8757d552b02a9dca72e9fb85f26cdd5bbcd4d))
+* :recycle: about命令内容调整 ([e4148e2](https://github.com/hezizi/space/commit/e4148e28192ad36ac26ade7e699587708e1eeb41))
+
 ## [1.4.1](https://github.com/hezizi/space/compare/1.4.0...1.4.1) (2024-01-05)
 
 
