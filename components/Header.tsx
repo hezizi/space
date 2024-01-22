@@ -9,10 +9,13 @@ import { LINKS, LinksType, SPACE_NAME } from '@/constants'
 export default function Header() {
   const pathname = usePathname()
   const [active, setActive] = useState<LinksType>('Home')
+
   useEffect(() => {
     const keys = Object.keys(LINKS) as LinksType[]
+    const pathnames = pathname.split('/')
     keys.map((key) => {
-      if (pathname.includes(LINKS[key])) setActive(key)
+      const val = LINKS[key].substring(1, key.length + 1)
+      if (pathnames.includes(val)) setActive(key)
     })
   }, [pathname])
 
