@@ -27,7 +27,11 @@ module.exports = {
             },
             img: {
               borderRadius: '8px',
-              maxWidth: '70%',
+              maxWidth: '65%',
+              marginTop: '1em',
+              marginBottom: '1em'
+            },
+            p: {
               marginTop: '1em',
               marginBottom: '1em'
             }
