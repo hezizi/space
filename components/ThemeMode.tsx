@@ -35,14 +35,14 @@ export default function ThemeMode() {
     transition.ready.then(() => {
       document.documentElement.animate(
         {
-          clipPath: theme === 'dark' ? clipPath : [...clipPath].reverse()
+          clipPath: theme === 'light' ? clipPath : [...clipPath].reverse()
         },
         {
           duration: 500,
           easing: 'ease-in-out',
           // 指定要附加动画的伪元素
           pseudoElement:
-            theme === 'dark'
+            theme === 'light'
               ? '::view-transition-new(root)'
               : '::view-transition-old(root)'
         }
