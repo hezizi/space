@@ -15,7 +15,7 @@
     -apple-system, monospace, sans-serif;
   --foreground: rgb(0, 0, 0);
   --background: rgb(255, 255, 255);
-  --dark-bg: rgb(30 41 59);
+  --dark-bg: rgb(30, 41, 59);
 }
 
 body {
@@ -27,4 +27,19 @@ body {
   html {
     font-family: var(--font-family);
   }
+}
+
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  display: block;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 999;
 }
