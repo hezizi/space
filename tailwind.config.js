@@ -27,6 +27,7 @@ module.exports = {
             },
             img: {
               borderRadius: '8px',
+              boxShadow: '5px 5px 20px lightgray',
               maxWidth: '65%',
               marginTop: '1em',
               marginBottom: '1em'
