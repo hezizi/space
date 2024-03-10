@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build --no-lint",
     "start": "npm run build && next start -p 3001",
-    "lint": "npx prettier --write . && next lint",
+    "lint": "next lint",
+    "format": "npx prettier --write .",
     "commit": "cz",
     "prepare": "husky install",
     "release": "release-it"
