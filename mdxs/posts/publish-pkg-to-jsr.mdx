@@ -1,0 +1,259 @@
+---
+title: 'JSR来了，那就去发个包吧!'
+description: 'Deno 推出的 JavaScript 注册表，原生 TypeScript 支持且仅支持 ESM，可运行在Deno、Node.js、Bun等运行时上'
+date: '2024-03-10'
+---
+
+![jsr-cover](/images/jsr-cover.png)
+
+## JSR
+
+全名为`JavaScript Registry`，由 Deno 推出的 JavaScript 注册表。有着很高的兼容性，可与任何 JavaScript 包管理器一起使用，如`npm`、`pnpm`、`yarn`，也可以在任何具有 node_modules 文件夹的项目中使用，支持`Deno`、`Node.js`、`Bun`等众多运行时。
+
+与 npm 显著不同的是它**原生 TypeScript 支持**，可直接发包无需转译成 JavaScript 代码，Deno 环境可直接使用，如果是在 Node.js 环境运行，则会将代码转译成 JS 且生成`.d.ts`文件。
+
+**JSR 仅支持 ESM**，随着 ESM 规范多年发展已经很成熟，并广为使用，CommonJS 逐渐被取代，非常多的 npm 包也在向 ESM 迁移，如 ECharts v5.5、AdonisJS v6 等。
+
+目前处于公开测试阶段，感兴趣的同学可以前往[JSR](https://jsr.io/)了解更多。
+
+## 用法
+
+```bash
+# deno
+deno add @yuci/utils
+
+# npm (use any of npx, yarn dlx, pnpm dlx, or bunx)
+npx jsr add @yuci/utils
+```
+
+```ts
+import { debounce } from '@yuci/utils'
+
+useEffect(() => {
+  window.addEventListener('scroll', debounce(scroll, 50))
+  return () => {
+    window.removeEventListener('scroll', debounce(scroll, 50))
+  }
+}, [])
+```
+
+Deno 原生支持 JSR，可无需安装，直接使用`jsr:`说明符即可使用。
+
+```ts
+import { capitalizeFirstLetter } from 'jsr:@yuci/utils'
+
+capitalizeFirstLetter('yuci') // Yuci
+```
+
+## 发包到 JSR
+
+已经对 JSR 有大致认知，回归文章主题，发布一个 TypeScript 代码包到 JSR 上。
+
+前往登录，点击发包，创建域并填写包名，如`@yuci/utils`，点击创建，创建成功便可看到。
+
+![jsr-utils](/images/jsr-yuci-utils.jpg)
+
+### 创建项目
+
+`npm init`或`deno init`来初始化项目，初始化完成在项目根目录添加`jsr.json`文件，包含`name`、`version`、`exports`基本字段，使用 Deno 创建的项目可直接将内容添加到`deno.json`中。
+
+```json
+// jsr.json / deno.json
+{
+  "name": "@yuci/utils",
+  "version": "0.1.0",
+  "exports": "./index.ts"
+}
+```
+
+### 开发
+
+`throttle`
+
+```ts
+export default function <T extends any[]>(
+  fn: (...args: T) => void,
+  delay: number = 300
+) {
+  let throttle = false
+
+  return (...args: T) => {
+    if (throttle) return
+
+    fn.apply(this, args)
+    throttle = true
+
+    setTimeout(() => {
+      throttle = false
+    }, delay)
+  }
+}
+```
+
+`debounce`
+
+```ts
+export default function <T extends any[]>(
+  fn: (...args: T) => void,
+  delay: number = 300
+) {
+  let timer: ReturnType<typeof setTimeout>
+
+  return (...args: T) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      fn.apply(this, args)
+    }, delay)
+  }
+}
+```
+
+`capitalizeFirstLetter`
+
+```ts
+export default function (str: string) {
+  return str.replace(/^\w/, (match) => match.toUpperCase())
+}
+```
+
+导出上述方法，并在入口文件`index.ts`中导入。
+
+```ts
+// src/index.ts
+export { default as capitalizeFirstLetter } from './capitalize-first-letter.ts'
+export { default as debounce } from './debounce.ts'
+export { default as throttle } from './throttle.ts'
+```
+
+```ts
+// index.ts
+export * from './src/index.ts'
+```
+
+### 发布
+
+至此一个简单的工具包开发完成，执行发布命令将包发布到 JSR。
+
+```bash
+# deno
+deno publish
+
+# npm
+npx jsr publish
+
+# pnpm
+pnpx jsr publish
+```
+
+此时存在报错：`info: all functions in the public API must have an explicit return type`，原因是写的方法没有明确指定返回类型，需要详细指定类型是为了在 Node.js 环境下生成正确的类型定义。
+
+添加返回类型再次发布，会跳转到页面进行验证。
+
+![jsr-auth](/images/jsr-auth.jpg)
+
+点击 Approve 验证通过即可看到包已成功发布，主页包含了 README.md 内容，还自动生成了 TypeScript API 文档。
+
+![jsr-overview](/images/jsr-yuci-utils-overview.jpg)
+
+由于 JSR 原生 TypeScript 支持，发布的包直接以 TS 代码存在，没有打包编译过程，整个发包过程很迅速。
+
+![jsr-overview](/images/jsr-files.jpg)
+
+有些文件不需要随包一起发布，可以在 jsr.json 中配置 `exclude` 来排除。
+
+```json
+// jsr.json
+{
+  "name": "@yuci/utils",
+  "version": "0.2.0",
+  "exports": "./index.ts",
+  "publish": {
+    "exclude": ["src/*.test.ts"]
+  }
+}
+```
+
+JSR 有个评分系统在 Score 一栏，会根据文档、模块说明、运行时兼容性等多个方面进行评分，如果分数较低可根据对应提示进行优化。
+
+### 自动发布
+
+在 GitHub Repository 中进行仓库绑定，新增 publish.yml 文件`.github/workflows/publish.yml`。
+
+```yml
+name: Publish
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish package
+        run: npx jsr publish
+```
+
+通过 GitHub Actions 即可实现自动发布。
+
+## 使用
+
+### 在 Deno 中使用
+
+因为 Deno 同样是原生 TypeScript 支持，无需导入可通过`jsr:`说明符直接在 Deno 中使用。
+
+```ts
+import { debounce, throttle, capitalizeFirstLetter } from 'jsr:@yuci/utils'
+
+debounce(() => {})
+throttle(() => {})
+capitalizeFirstLetter('hello')
+```
+
+也可以使用`deno add @yuci/utils`安装，会在`deno.json`中添加`imports`字段，导入方式同 Node.js 项目中一致。
+
+```json
+// deno.json
+{
+  "imports": { "@yuci/utils": "jsr:@yuci/utils@^0.2.1" }
+}
+```
+
+### 在 Node.js 中使用
+
+pnpm init 初始化项目，执行`pnpm dlx jsr add @yuci/utils`安装，这个过程会在项目根目录添加`.npmrc`文件，保证使用 npm、pnpm、yarn 进行安装的时候无误。
+
+```
+// .npmrc
+@jsr:registry=https://npm.jsr.io
+```
+
+```json
+// package.json
+{
+  "dependencies": {
+    "@yuci/utils": "npm:@jsr/yuci__utils@^0.2.1"
+  }
+}
+```
+
+```ts
+import { debounce, throttle, capitalizeFirstLetter } from '@yuci/utils'
+```
+
+`.ts`文件会被编译成`.js`以及生成`.d.ts`文件。
+
+![jsr-overview](/images/jsr-usage-node.jpg)
+
+## 最后
+
+相较于 npm，JSR 有更好的 TypeScript 支持，直接编写 TS 代码无需关注打包，且放弃了 CommonJS 完全采用 ESM 规范。正如 Deno 团队表示希望 JSR 能够推动 JavaScript 社区未来 15 年的创新，并帮助 TypeScript 和 JavaScript 开发人员提高工作效率。
+
+[@yuci/utils](https://jsr.io/@yuci/utils)
