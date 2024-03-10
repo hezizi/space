@@ -8,9 +8,9 @@ date: '2023-07-09'
 
 > 就挺有意思，域名，技术栈和平台的折腾史
 
-- 2018年使用`hexo`搭建了个静态博客，部署在`github pages`
-- 2020年重新写了博客，`vue`，`nodejs`，`mongodb`三件套，使用`nginx`部署在云服务器上
-- 2023年云服务器过期了，再一次重写了博客，`nextjs`为基础框架，部署在`vercel`上
+- 2018 年使用`hexo`搭建了个静态博客，部署在`github pages`
+- 2020 年重新写了博客，`vue`，`nodejs`，`mongodb`三件套，使用`nginx`部署在云服务器上
+- 2023 年云服务器过期了，再一次重写了博客，`nextjs`为基础框架，部署在`vercel`上
 
 ### 背景
 
@@ -116,7 +116,7 @@ const NoSSRThemeProvider =
 
 ### 类终端
 
-> 由输入和输出组件组成，输入的结果添加到输出list中
+> 由输入和输出组件组成，输入的结果添加到输出 list 中
 
 #### 命令输入的打字效果
 
@@ -130,25 +130,22 @@ import Image from 'next/image'
   alt="autotyping"
 />
 
-定义打字间隔100ms，对键入的命令for处理，定时器中根据遍历的索引延迟赋值。
+定义打字间隔 100ms，对键入的命令 for 处理，定时器中根据遍历的索引延迟赋值。
 
 ```ts
 const autoTyping = (cmd: string) => {
   const interval = 100 // ms
   for (let i = 0; i < cmd.length; i++) {
-    setTimeout(
-      () => {
-        setCmd((prev) => prev + cmd.charAt(i))
-      },
-      interval * (i + 1)
-    )
+    setTimeout(() => {
+      setCmd((prev) => prev + cmd.charAt(i))
+    }, interval * (i + 1))
   }
 }
 ```
 
 #### 滚动到底部
 
-定义外层容器`ref`为`containerRef`，键入命令后都自动滚动到页面底部，使用了`scrollIntoView`api，让调用这个api的容器始终在页面可见，
+定义外层容器`ref`为`containerRef`，键入命令后都自动滚动到页面底部，使用了`scrollIntoView`api，让调用这个 api 的容器始终在页面可见，
 `block`参数设置为`end`表示垂直方向末端对其即最底端。
 
 ```tsx
@@ -163,7 +160,7 @@ useEffect(() => {
 
 ### MDX
 
-> 何为`mdx`？即给`md`添加了`jsx`支持，功能更强大的md，在nextjs中通过`@next/mdx`解析`.mdx`文件，它会将`md`和`react components`转成html
+> 何为`mdx`？即给`md`添加了`jsx`支持，功能更强大的 md，在 nextjs 中通过`@next/mdx`解析`.mdx`文件，它会将`md`和`react components`转成 html
 
 安装相关包，后两者作为`@next/mdx`的`peerDependencies`
 
@@ -212,13 +209,13 @@ config.resolve.alias['next-mdx-import-source-file'] = [
 ]
 ```
 
-至此就可以在app中使用`mdx`。
+至此就可以在 app 中使用`mdx`。
 
 ### 排版
 
-> 为mdx解析成的html添加样式
+> 为 mdx 解析成的 html 添加样式
 
-解析mdx为html，但并没有样式，所以我们借助`@tailwindcss/typography`来为其添加样式，在`tailwind.config.js`使用该插件。
+解析 mdx 为 html，但并没有样式，所以我们借助`@tailwindcss/typography`来为其添加样式，在`tailwind.config.js`使用该插件。
 
 ```js
 // tailwind.config.js
@@ -228,13 +225,13 @@ module.exports = {
 }
 ```
 
-在外层标签上添加`prose`的className，`prose-invert`用于暗黑模式。
+在外层标签上添加`prose`的 className，`prose-invert`用于暗黑模式。
 
 ```tsx
 <article className="prose dark:prose-invert">{mdx}</article>
 ```
 
-综上我们实现了对mdx的样式支持，然而有一点是`@tailwindcss/typography`并不会对mdx代码块中代码进行高亮。
+综上我们实现了对 mdx 的样式支持，然而有一点是`@tailwindcss/typography`并不会对 mdx 代码块中代码进行高亮。
 
 ### 代码高亮
 
@@ -277,11 +274,11 @@ export default function CodeHighligher({
 ```
 
 `react-syntax-highlighter`高亮代码可用`hljs`和`prism`，我在这使用的`prism`，两者都有众多代码高亮主题可供选择，
-lang如果没标注则默认为`javascript`也可以简写为`js`，值得注意的是如果是使用`hljs`，则必须写`javascript`，不可简写为`js`，否则代码高亮失败，这一点`prism`更加友好。
+lang 如果没标注则默认为`javascript`也可以简写为`js`，值得注意的是如果是使用`hljs`，则必须写`javascript`，不可简写为`js`，否则代码高亮失败，这一点`prism`更加友好。
 
 同时通过`useTheme`实现亮色，暗色模式下使用不同代码高亮主题。
 
-组件写好了，该如何使用？上面讲到过mdx的解析，在`useMDXComponents`重新渲染`pre`标签。
+组件写好了，该如何使用？上面讲到过 mdx 的解析，在`useMDXComponents`重新渲染`pre`标签。
 
 ```tsx
 // mdx-components.tsx
@@ -299,7 +296,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 }
 ```
 
-mdx文件中代码块会被解析成`pre`标签，可以对`pre`标签返回值作进一步处理，即返回高亮组件，这样可实现对代码高亮，当然高亮主题很多，选自己喜欢的。
+mdx 文件中代码块会被解析成`pre`标签，可以对`pre`标签返回值作进一步处理，即返回高亮组件，这样可实现对代码高亮，当然高亮主题很多，选自己喜欢的。
 
 ### 文章元数据
 
@@ -313,10 +310,10 @@ date: '2020-01-01'
 ---
 ```
 
-@next/mdx默认不会按照`yaml`语法解析，这会被解析成`h2`标签，然而我们并不希望元数据被解析成h2标签作为内容展示，更希望拿这类数据做其他处理，
+@next/mdx 默认不会按照`yaml`语法解析，这会被解析成`h2`标签，然而我们并不希望元数据被解析成 h2 标签作为内容展示，更希望拿这类数据做其他处理，
 为了正确解析`yaml`，需要借助`remark-frontmatter`来实现。
 
-使用该插件，注意需要修改next配置文件名为`next.config.mjs`，因为`remark-frontmatter`只支持`ESM`规范。
+使用该插件，注意需要修改 next 配置文件名为`next.config.mjs`，因为`remark-frontmatter`只支持`ESM`规范。
 
 ```js
 import createMDX from '@next/mdx'
@@ -332,11 +329,11 @@ const withMDX = createMDX({
 export default withMDX(nextConfig)
 ```
 
-yaml被正确解析了那么我们可以使用`gray-matter`来获取文章元数据
+yaml 被正确解析了那么我们可以使用`gray-matter`来获取文章元数据
 
 ### 文章列表
 
-由于app目录是运行在`nodejs runtime`下，基本思路是用nodejs的`fs`模块去读取文章目录即`mdxs/posts`，读取该目录下的所有文章放在一个list中。
+由于 app 目录是运行在`nodejs runtime`下，基本思路是用 nodejs 的`fs`模块去读取文章目录即`mdxs/posts`，读取该目录下的所有文章放在一个 list 中。
 
 使用`fs.readdirSync`读取文章目录内容，但是这仅仅是拿到文章名称的集合。
 
@@ -349,7 +346,7 @@ export function getPostList() {
 }
 ```
 
-文章列表中展示的是标题而不是名称，标题作为文章的元数据，通过`gray-matter`的`read`api读取文件可获取（也可以使用`fs.readFileSync`） read返回`data`和`content`的对象，
+文章列表中展示的是标题而不是名称，标题作为文章的元数据，通过`gray-matter`的`read`api 读取文件可获取（也可以使用`fs.readFileSync`） read 返回`data`和`content`的对象，
 `data`是元数据信息，`content`则是文章内容。
 
 ```ts
@@ -377,7 +374,7 @@ export function getPostMetaList() {
 }
 ```
 
-上述方法中我们拿到了所有文章标题，描述信息，日期的list，根据list渲染文章列表。
+上述方法中我们拿到了所有文章标题，描述信息，日期的 list，根据 list 渲染文章列表。
 
 ### 文章详情
 
@@ -427,7 +424,7 @@ export async function generateStaticParams() {
 
 ### 部署
 
-项目是部署在vercel，使用github登录后我们新建一个项目，点进去后会看到`Import Git Repository`，导入对应仓库即可，后续我们每次提交代码都会自动化部署。
+项目是部署在 vercel，使用 github 登录后我们新建一个项目，点进去后会看到`Import Git Repository`，导入对应仓库即可，后续我们每次提交代码都会自动化部署。
 
 <Image
   src="/images/new-project.jpg"
@@ -437,18 +434,18 @@ export async function generateStaticParams() {
   alt="new-vercel-project"
 />
 
-有自己域名的可以在Domains中添加，然后去到你买域名的地方添加对应DNS解析即可。
+有自己域名的可以在 Domains 中添加，然后去到你买域名的地方添加对应 DNS 解析即可。
 
 ### 总结
 
 开发中遇到了一些坑：
 
-1. `next-themes`报错`Warning: Extra attributes from the server: class,style`，通过issues和看文档，最终找到了方案
-2. `mdx-components`组件的命名，经多次测试发现只能命名为`mdx-components`，阅读@next/mdx的源码也验证了
-3. 语法高亮，开始使用的`hljs`，mdx中的代码块写的`js`，部署到线上后发现代码并没有高亮，然后改用了`prism`正常高亮，
-   又是阅读了`react-syntax-highlighter`源码发现hljs的语言集合中并没有`js`，所以无法正确解析，只能写成`javascript`，而`prism`两者写法都支持
-4. 首页的`posts`命令是运行在客户端组件中，fs无法使用，因此获取文章的方案使用fetch请求api
-5. 使用`remark-frontmatter`解析yaml无法和`mdxRs: true`同时使用，否则解析失败。添加此配置项表示使用基于`rust`的解析器来解析`mdx`，可能是还未支持的缘故
+1. `next-themes`报错`Warning: Extra attributes from the server: class,style`，通过 issues 和看文档，最终找到了方案
+2. `mdx-components`组件的命名，经多次测试发现只能命名为`mdx-components`，阅读@next/mdx 的源码也验证了
+3. 语法高亮，开始使用的`hljs`，mdx 中的代码块写的`js`，部署到线上后发现代码并没有高亮，然后改用了`prism`正常高亮，
+   又是阅读了`react-syntax-highlighter`源码发现 hljs 的语言集合中并没有`js`，所以无法正确解析，只能写成`javascript`，而`prism`两者写法都支持
+4. 首页的`posts`命令是运行在客户端组件中，fs 无法使用，因此获取文章的方案使用 fetch 请求 api
+5. 使用`remark-frontmatter`解析 yaml 无法和`mdxRs: true`同时使用，否则解析失败。添加此配置项表示使用基于`rust`的解析器来解析`mdx`，可能是还未支持的缘故
 
 ```js
 module.exports = withMDX({

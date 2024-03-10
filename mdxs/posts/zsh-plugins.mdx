@@ -6,7 +6,7 @@ date: '2023-08-02'
 
 import Image from 'next/image'
 
-全文在`macOS`操作系统下，macOS早在Catalina版本就将`zsh`作为默认`shell`，如果是使用的`bash`，通过`chsh -s /bin/zsh`将shell设置为`zsh`，`echo $SHELL`查看当前使用的哪种shell。
+全文在`macOS`操作系统下，macOS 早在 Catalina 版本就将`zsh`作为默认`shell`，如果是使用的`bash`，通过`chsh -s /bin/zsh`将 shell 设置为`zsh`，`echo $SHELL`查看当前使用的哪种 shell。
 
 ### ohmyzsh
 
@@ -18,7 +18,7 @@ import Image from 'next/image'
 
 > 介绍`ohmyzsh`中几个好用的插件，插件丰富多样，除了内置的插件，还有第三方
 
-确保`ohmyzsh`已安装，终端中输入`vim ~/.zshrc`打开zsh配置文件，找到`plugins`配置项`plugins=()`，多个插件使用空格隔开。
+确保`ohmyzsh`已安装，终端中输入`vim ~/.zshrc`打开 zsh 配置文件，找到`plugins`配置项`plugins=()`，多个插件使用空格隔开。
 
 #### 内置插件
 
@@ -26,7 +26,7 @@ import Image from 'next/image'
 
 `plugins=(git)`
 
-作为使用频率最高的操作之一，该插件为git命令设置了别名，不再需要每次敲完整命令。每次都输入完整命令提交，搞得你得加班来完成本可以在上班期间就能完成的功能，使用`git plugin`多少能让你早点下班😂。
+作为使用频率最高的操作之一，该插件为 git 命令设置了别名，不再需要每次敲完整命令。每次都输入完整命令提交，搞得你得加班来完成本可以在上班期间就能完成的功能，使用`git plugin`多少能让你早点下班 😂。
 
 常用的别名有：
 
@@ -66,25 +66,25 @@ import Image from 'next/image'
 - `grh` => `git reset`
 - `grhh` => `git reset --hard`
 
-提供的别名非常多，大家可根据自己git习惯用上对应别名。
+提供的别名非常多，大家可根据自己 git 习惯用上对应别名。
 
 2. node
 
 `plugins=(node)`
 
-该插件提供快速跳转`nodejs`文档，在命令行中输入`node-docs xxx(api)`，如`node-docs fs`快速跳转到`fs`api，对于正在使用nodejs开发突然忘记某个api需要查看文档，这个插件有效节省搜索文档时间。
+该插件提供快速跳转`nodejs`文档，在命令行中输入`node-docs xxx(api)`，如`node-docs fs`快速跳转到`fs`api，对于正在使用 nodejs 开发突然忘记某个 api 需要查看文档，这个插件有效节省搜索文档时间。
 
 3. vscode
 
 `plugins=(vscode)`
 
-命令行输入`code`或`vsc`在vscode中打开当前路径下的文件。
+命令行输入`code`或`vsc`在 vscode 中打开当前路径下的文件。
 
 4. web-search
 
 `plugins=(web-search)`
 
-在默认浏览器中通过指定搜索服务进行搜索，搜索服务包括`google bing github...`，使用方式为命令行中输入`搜索服务 关键词`，如`google zsh`用谷歌快速搜索zsh。
+在默认浏览器中通过指定搜索服务进行搜索，搜索服务包括`google bing github...`，使用方式为命令行中输入`搜索服务 关键词`，如`google zsh`用谷歌快速搜索 zsh。
 
 上述四个是内置插件，无需安装直接配置即可使用`plugins=(git node vscode web-search)`，下面介绍两个自定义插件。
 

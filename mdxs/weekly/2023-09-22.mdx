@@ -4,18 +4,18 @@ title: 'Nextjs v13.5, Nodejs v20.7.0, Svelte runes, Bard更新, NueJS'
 
 ### 发布
 
-- `nextjs v13.5`，提升启动和 HMR 速度，内存占用降低40%
+- `nextjs v13.5`，提升启动和 HMR 速度，内存占用降低 40%
 - `nodejs v20.7.0`，支持多个 --env-file 申明，npm 版本升级到 10.1.0
 - `release-it v16.2.0`，给消息上下文添加 releaseUrl 信息
 - `rollup v3.29.3`，修复函数参数改变后代码被错误地进行树摇的错误
-- `unocss v0.56.0`，monorepo中新增 @unocss/rule-utils 常用工具方法包
-- `plugin-legacy v5.0.0-beta.0`，将最低 node 版本提升到18
+- `unocss v0.56.0`，monorepo 中新增 @unocss/rule-utils 常用工具方法包
+- `plugin-legacy v5.0.0-beta.0`，将最低 node 版本提升到 18
 
 ### 资讯
 
 > Svelte runes
 
-Svelte宣布计划在`Svelte 5`中引入[runes](https://svelte.dev/blog/runes)。什么是`runes`，官方定义：`A letter or mark used as a mystical or magic symbol`，大致含义是含有特定功能的字母或标记。
+Svelte 宣布计划在`Svelte 5`中引入[runes](https://svelte.dev/blog/runes)。什么是`runes`，官方定义：`A letter or mark used as a mystical or magic symbol`，大致含义是含有特定功能的字母或标记。
 
 使用`$state`rune
 
@@ -36,12 +36,12 @@ Svelte宣布计划在`Svelte 5`中引入[runes](https://svelte.dev/blog/runes)�
 
 > Nextjs 13.5
 
-Nextjs发布[13.5](https://nextjs.org/blog/next-13-5)版本，有以下特性：
+Nextjs 发布[13.5](https://nextjs.org/blog/next-13-5)版本，有以下特性：
 
-1. 启动速度提高22%
-2. HMR速度提高29%
-3. 内存占用减少40%
-4. [修复超过438个错误](https://nextjs.org/blog/next-13-5#other-improvements)
+1. 启动速度提高 22%
+2. HMR 速度提高 29%
+3. 内存占用减少 40%
+4. [修复超过 438 个错误](https://nextjs.org/blog/next-13-5#other-improvements)
 5. 优化包的导入，在`optimizePackageImports`中添加对应包名称
 
 ```js
@@ -76,15 +76,15 @@ export default function Page() {
 }
 ```
 
-> Bard更新，全新推出：Bard迄今为止最强大的模型
+> Bard 更新，全新推出：Bard 迄今为止最强大的模型
 
-谷歌AI产品`Bard`[更新](https://bard.google.com/updates)，现在更直观明了、更富于想象力、响应速度更快，还可用Google搜索功能核查Bard的回答，但目前只支持英文。
+谷歌 AI 产品`Bard`[更新](https://bard.google.com/updates)，现在更直观明了、更富于想象力、响应速度更快，还可用 Google 搜索功能核查 Bard 的回答，但目前只支持英文。
 
 > NueJS
 
-官方定义：[它](https://github.com/nuejs/nuejs)是一个非常小的（压缩后 2.3kb）JavaScript库，用于构建Web界面，没有`hooks`、`effects`、`props`、`portals`、`watchers`、`provides`、`injects`等，了解HTML、CSS和JavaScript的基础知识即可使用。
+官方定义：[它](https://github.com/nuejs/nuejs)是一个非常小的（压缩后 2.3kb）JavaScript 库，用于构建 Web 界面，没有`hooks`、`effects`、`props`、`portals`、`watchers`、`provides`、`injects`等，了解 HTML、CSS 和 JavaScript 的基础知识即可使用。
 
-使用基于HTML的模板语法
+使用基于 HTML 的模板语法
 
 ```html
 <div @name="media-object" class="{ type }">
@@ -99,6 +99,6 @@ export default function Page() {
 
 > [Emoji Kitchen](https://emojikitchen.dev/)
 
-支持将两个emoji根据各自特征合并生成一个新emoji，新增🍎,🍗,🧈,🍢,🍡,🥟,🍭,🍮,🍯,🥛等众多emoji。
+支持将两个 emoji 根据各自特征合并生成一个新 emoji，新增 🍎,🍗,🧈,🍢,🍡,🥟,🍭,🍮,🍯,🥛 等众多 emoji。
 
 ![emojikitchen](/images/emojikitchen.png)

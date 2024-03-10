@@ -6,24 +6,24 @@ title: 'create-vue v3.7.4, lerna v7.3.0, lodash关闭所有issue和PR, turborepo
 
 - `create-vue v3.7.4`，更换`npm-run-all`为`npm-run-all2`，`typescript`模版中`build`脚本新增给`vite build`传参
 - `lerna v7.3.0`，执行`lerna init`时检查包管理器，如果为`pnpm`则生成`pnpm-workspace.yaml`文件
-- `bun v1.0.2`，修复大量bug，更快的`bun --watch`
+- `bun v1.0.2`，修复大量 bug，更快的`bun --watch`
 - `element-plus v2.3.13`，增强`upload`组件`data`属性，支持异步
 - `arco-design v2.53.1`，优化`TreeSelect`组件大数据下的性能
-- `electron v26.2.1`，修复了全屏浏览时`BrowserWindows`可能会在macOS上崩溃的问题
+- `electron v26.2.1`，修复了全屏浏览时`BrowserWindows`可能会在 macOS 上崩溃的问题
 
 ### 资讯
 
-> Lodash关闭所有issue和PR
+> Lodash 关闭所有 issue 和 PR
 
-`lodash`关闭了所有issue和PR，并打上`issue bankruptcy`的tag。
+`lodash`关闭了所有 issue 和 PR，并打上`issue bankruptcy`的 tag。
 
 ![lodash](/images/lodash.jpg)
 
-lodash创建者表示正在开发`lodash v5`。
+lodash 创建者表示正在开发`lodash v5`。
 
 ![lodash](/images/lodash_5.jpg)
 
-> Turborepo现在对Bun提供测试版支持
+> Turborepo 现在对 Bun 提供测试版支持
 
 运行:
 
@@ -34,10 +34,10 @@ lodash创建者表示正在开发`lodash v5`。
 
 ![trubo_bun](/images/trubo_bun.jpg)
 
-> Node.js 16 EOL，请升级到Node.js 18
+> Node.js 16 EOL，请升级到 Node.js 18
 
-原本是计划在2024年4月进入EOL阶段，由于`OpenSSL 1.1.1`计划支持到2023年9月，为避免可能带来的安全问题，所以提前结束`Node.js 16`生命周期。
+原本是计划在 2024 年 4 月进入 EOL 阶段，由于`OpenSSL 1.1.1`计划支持到 2023 年 9 月，为避免可能带来的安全问题，所以提前结束`Node.js 16`生命周期。
 
-> Storyblok支持Astro 3.0
+> Storyblok 支持 Astro 3.0
 
-发布的`@storyblok/astro v3.0.0`完全支持astro 3.0，运行`npx @storyblok/create-demo@next -f astro`快速创建。而且支持`bun`，如果是使用bun，可运行`bunx @storyblok/create-demo@next -f astro -p bun`。
+发布的`@storyblok/astro v3.0.0`完全支持 astro 3.0，运行`npx @storyblok/create-demo@next -f astro`快速创建。而且支持`bun`，如果是使用 bun，可运行`bunx @storyblok/create-demo@next -f astro -p bun`。

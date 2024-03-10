@@ -5,17 +5,17 @@ title: 'rollup v3.29.0, vant v4.6.7, Deno Deploy原生npm支持, Bun v1.0'
 ### 发布
 
 - `rollup v3.29.0`，新增`output.sourcemapFileNames`配置
-- `vant v4.6.7`，`vant-use`中新增`useRaf`hook用于便捷调用和取消`requestAnimationFrame`，单元测试从`jest`迁移到`vitest`
-- `ant-design v5.8.6`，优化`CSSInJS`加载styles大小，`@ant-design/icons`移除`lodash/camelCase`减小打包体积
+- `vant v4.6.7`，`vant-use`中新增`useRaf`hook 用于便捷调用和取消`requestAnimationFrame`，单元测试从`jest`迁移到`vitest`
+- `ant-design v5.8.6`，优化`CSSInJS`加载 styles 大小，`@ant-design/icons`移除`lodash/camelCase`减小打包体积
 - `webpack v4.47.0`，提高安全性，在`Node >=18`版本添加对`md4`的支持
 - `markdown-it-mdc v0.1.4`，改进`ul li`列表渲染
 - `unocss v0.55.7`，`blocklist`增强，支持自定义方法
 
 ### 资讯
 
-> [Deno Deploy原生npm支持](https://deno.com/blog/npm-on-deno-deploy)
+> [Deno Deploy 原生 npm 支持](https://deno.com/blog/npm-on-deno-deploy)
 
-`Deno Deploy`可构建托管任何JavaScript应用程序，现在可通过`npm:`说明符运行`npm`模块，意味着现在可以使用`npm`模块托管`Node.js`应用程序，而无需构建步骤。
+`Deno Deploy`可构建托管任何 JavaScript 应用程序，现在可通过`npm:`说明符运行`npm`模块，意味着现在可以使用`npm`模块托管`Node.js`应用程序，而无需构建步骤。
 
 例如在`Deno Deploy`上跑`express`
 
@@ -41,6 +41,6 @@ app.listen(3000)
 
 > Bun 1.0
 
-根据官方给出的基准测试，`Bun`速度快到一骑绝尘，干啥都快。中国时间大概今晚11点`1.0`版本发布
+根据官方给出的基准测试，`Bun`速度快到一骑绝尘，干啥都快。中国时间大概今晚 11 点`1.0`版本发布
 
 ![bun1.0](/images/bun1.0.jpg)
