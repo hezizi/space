@@ -28,13 +28,14 @@ module.exports = {
             img: {
               borderRadius: '8px',
               boxShadow: '5px 5px 20px lightgray',
-              maxWidth: '65%',
-              marginTop: '1em',
-              marginBottom: '1em'
+              // maxWidth: '65%',
+              marginTop: '1.5em',
+              marginBottom: '2em'
             },
             p: {
               marginTop: '1em',
-              marginBottom: '1em'
+              marginBottom: '1em',
+              lineHeight: '30px'
             }
           }
         },

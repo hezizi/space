@@ -19,6 +19,7 @@ export default function CodeHighligher({
       style={theme === 'light' ? oneLight : oneDark}
       customStyle={{
         padding: 20,
+        marginBottom: 15,
         fontSize: 15,
         fontFamily: 'var(--font-family)'
       }}
