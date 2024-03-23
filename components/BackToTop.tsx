@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { debounce } from '@yuci/utils'
 import Icon from '@/components/Icon'
+import useScroll from 'hooks/useScroll'
 
 export default function BackTop() {
   const onClick = () => {
@@ -12,18 +12,12 @@ export default function BackTop() {
     })
   }
 
+  const { scrollTop } = useScroll()
   const [show, setShow] = useState(false)
-  const scroll = () => {
-    const { scrollTop } = document.documentElement
-    setShow(scrollTop > 600)
-  }
 
   useEffect(() => {
-    window.addEventListener('scroll', debounce(scroll, 50))
-    return () => {
-      window.removeEventListener('scroll', debounce(scroll, 50))
-    }
-  }, [])
+    setShow(scrollTop > 600)
+  }, [scrollTop])
 
   return (
     <>
