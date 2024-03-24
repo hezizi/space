@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Icon from '@/components/Icon'
-import useScroll from 'hooks/useScroll'
+import { useScroll } from 'hooks'
 
 export default function BackTop() {
   const onClick = () => {
